@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joel Foti — Information Architect & Systems Developer</title>
+    <meta name="description" content="Information Architect specialized in legacy data systems modernization, metadata engineering, and web interfaces. Buenos Aires, Argentina.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:         #0f172a;
+            --surface:    #1e293b;
+            --border:     rgba(255,255,255,0.08);
+            --muted:      #94a3b8;
+            --text:       #cbd5e1;
+            --heading:    #f1f5f9;
+            --accent:     #38bdf8;
+            --accent-dim: rgba(56,189,248,0.12);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; transition: color 0.2s; }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 2.5rem;
+            background: rgba(15,23,42,0.88);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.82rem;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        .container { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+
+        section { padding: 7rem 0; }
+
+        hr.divider { border: none; border-top: 1px solid var(--border); }
+
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 5rem;
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--heading);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 .subdued { color: var(--muted); }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text);
+            max-width: 56ch;
+            margin-bottom: 2.5rem;
+            line-height: 1.85;
+            border-left: 2px solid var(--accent);
+            padding-left: 1.25rem;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .contact-row a { display: flex; align-items: center; gap: 0.45rem; }
+        .contact-row a:hover { color: var(--accent); }
+
+        .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.85rem 1.75rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            transition: all 0.25s;
+            display: inline-block;
+        }
+
+        .btn:hover { background: var(--accent); color: var(--bg); }
+
+        .btn-ghost { border-color: var(--border); color: var(--muted); }
+        .btn-ghost:hover { border-color: var(--text); color: var(--text); background: transparent; }
+
+        .code-float {
+            position: absolute;
+            right: 0; top: 55%;
+            transform: translateY(-50%);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.9;
+            color: var(--accent);
+            opacity: 0.08;
+            pointer-events: none;
+            animation: float 7s ease-in-out infinite;
+            display: none;
+        }
+
+        @media (min-width: 1024px) { .code-float { display: block; } }
+        @keyframes float { 0%,100%{transform:translateY(-50%)} 50%{transform:translateY(calc(-50% - 12px))} }
+
+        .section-header { margin-bottom: 3.5rem; }
+
+        .section-num {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.7rem, 3vw, 2.5rem);
+            font-weight: 700;
+            color: var(--heading);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .screenshots { display: flex; flex-direction: column; gap: 0.85rem; }
+
+        .ss-main {
+            position: relative;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .ss-main img { width: 100%; height: auto; display: block; }
+
+        .ss-thumb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+
+        .ss-thumb { border: 1px solid var(--border); overflow: hidden; background: var(--surface); }
+
+        .ss-thumb img {
+            width: 100%; height: auto; display: block;
+            opacity: 0.75; transition: opacity 0.3s;
+        }
+
+        .ss-thumb:hover img { opacity: 1; }
+
+        .live-badge {
+            position: absolute; top: 0.65rem; right: 0.65rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.6rem; font-weight: 500;
+            background: #10b981; color: #000;
+            padding: 0.18rem 0.55rem;
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+
+        .live-dot {
+            width: 5px; height: 5px; background: #000;
+            border-radius: 50%;
+            animation: blink 1.6s ease-in-out infinite;
+        }
+
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        .case-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2.25rem;
+        }
+
+        .case-tag {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+        }
+
+        .case-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 0.3rem;
+        }
+
+        .case-url {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.66rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 1.75rem;
+            opacity: 0.8;
+        }
+
+        .case-block { padding: 1.25rem 0; border-top: 1px solid var(--border); }
+
+        .case-block-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .case-block p { font-size: 0.88rem; line-height: 1.8; color: var(--text); }
+
+        .case-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .case-block ul li {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.65;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+
+        .case-block ul li::before {
+            content: '\2192';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.05em;
+        }
+
+        .case-block ul li code {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.78rem;
+            white-space: nowrap;
+        }
+
+        .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
+
+        .tag {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.62rem;
+            padding: 0.28rem 0.7rem;
+            background: rgba(56,189,248,0.07);
+            border: 1px solid rgba(56,189,248,0.2);
+            color: var(--accent);
+        }
+
+        .caps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .cap-cell {
+            background: var(--surface);
+            padding: 1.75rem 1.5rem;
+            transition: background 0.2s;
+        }
+
+        .cap-cell:hover { background: var(--accent-dim); }
+
+        .cap-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .cap-title { font-size: 0.9rem; font-weight: 600; color: var(--heading); margin-bottom: 0.6rem; }
+        .cap-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p { font-size: 0.97rem; line-height: 1.9; color: var(--text); margin-bottom: 1.25rem; }
+        .about-text strong { color: var(--heading); font-weight: 600; }
+
+        .edu-card { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem; }
+
+        .edu-label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .edu-item:last-child { border-bottom: none; }
+        .edu-name { font-size: 0.82rem; color: var(--text); line-height: 1.5; }
+        .edu-status { font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--heading); white-space: nowrap; }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        @media (max-width: 860px) {
+            .case-grid { grid-template-columns: 1fr; }
+            .caps-grid { grid-template-columns: 1fr 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        @media (max-width: 580px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { display: none; }
+            .container { padding: 0 1.25rem; }
+            section { padding: 4.5rem 0; }
+            .caps-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <span class="nav-logo">&lt;joel_foti /&gt;</span>
+    <div class="nav-links">
+        <a href="#work">01. Case Study</a>
+        <a href="#stack">02. Capabilities</a>
+        <a href="#about">03. Profile</a>
+    </div>
+</nav>
+
+<main>
+
+    <section id="hero">
+        <div class="container">
+            <div style="position:relative;">
+
+                <div class="code-float" aria-hidden="true"><pre># ISIS to JSON normalizer
+def build_suggest_index(db):
+    records = []
+    for mfn in range(1, db.count+1):
+        v = db.read(mfn)
+        records.append({
+            "term":  v[650][0],
+            "id":    mfn,
+            "scope": v[680][0] or ""
+        })
+    return json.dumps(records, ensure_ascii=False)
+
+while searching_xis():
+    apply_format("INTI_WEB_2026")
+    render_spa_results()</pre></div>
+
+                <p class="eyebrow">Information Architect &amp; Systems Developer</p>
+
+                <h1>
+                    Bridging the Gap Between<br>
+                    Legacy Data and<br>
+                    <span class="subdued">Modern Architecture.</span>
+                </h1>
+
+                <p class="hero-desc">
+                    Especialista en la reingeniería de sistemas de datos complejos. Construyo puentes entre infraestructura legacy (ISIS, WXIS, Apache) y estándares web modernos — automatizando metadatos y entregando interfaces eficientes.
+                </p>
+
+                <div class="contact-row">
+                    <a href="mailto:fotilejo@gmail.com">
+                        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        fotilejo@gmail.com
+                    </a>
+                    <a href="https://github.com/fotilejo" target="_blank" rel="noopener">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        github.com/fotilejo
+                    </a>
+                    <a href="https://www.linkedin.com/in/joel-foti" target="_blank" rel="noopener">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zm-11 19H5v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <div class="cta-row">
+                    <a href="#work" class="btn">Ver Case Study</a>
+                    <a href="http://www-biblio.inti.gob.ar/prueba/" target="_blank" rel="noopener" class="btn btn-ghost">Live Demo ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="work">
+        <div class="container reveal">
+            <div class="section-header">
+                <p class="section-num">01. Featured Project</p>
+                <h2>INTI Library System Modernization</h2>
+            </div>
+
+            <div class="case-grid">
+
+                <div class="screenshots">
+                    <div class="ss-main">
+                        <span class="live-badge"><span class="live-dot"></span>Live</span>
+                        <img src="1_Inti_Home.jpg" alt="INTI Biblioteca — Home interface with catalog cards and navigation" loading="lazy">
+                    </div>
+                    <div class="ss-thumb-row">
+                        <div class="ss-thumb">
+                            <img src="2_Inti_Busqueda.jpg" alt="INTI Catalog — Search results in title view" loading="lazy">
+                        </div>
+                        <div class="ss-thumb">
+                            <img src="3_Inti_Registro.jpg" alt="INTI Catalog — Full bibliographic record with export options" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <p class="case-tag">Reingeniería &amp; Automatización</p>
+                    <h3 class="case-title">Biblioteca Central INTI</h3>
+                    <a class="case-url" href="http://www-biblio.inti.gob.ar/prueba/" target="_blank" rel="noopener">www-biblio.inti.gob.ar/prueba/ ↗</a>
+
+                    <div class="case-block">
+                        <p class="case-block-label">El Problema</p>
+                        <p>Sistema web legacy construido sobre bases ISIS y scripts WXIS sin documentación. La lógica de búsqueda estaba dispersa en archivos <code>.xis</code> y formatos ISIS, operando como silos inaccesibles para la web moderna.</p>
+                    </div>
+
+                    <div class="case-block">
+                        <p class="case-block-label">Engineering Approach</p>
+                        <ul>
+                            <li>Auditoría e ingeniería inversa de scripts <code>.xis</code> y archivos <code>.fdt</code> de cada base de datos</li>
+                            <li>Reescritura completa de los 5 scripts de búsqueda y exportación del sistema (<code>simple.xis</code>, <code>avanzada.xis</code>, <code>descriptor.xis</code>, <code>registrounico.xis</code>, <code>export.xis</code>)</li>
+                            <li>Extracción del tesauro → normalización a JSON → sistema de sugerencias en tiempo real</li>
+                            <li>Búsqueda avanzada multi-campo con limpieza de caracteres para mejorar el recall</li>
+                            <li>SEO técnico y security hardening en servidor Apache</li>
+                        </ul>
+                    </div>
+
+                    <div class="case-block">
+                        <p class="case-block-label">Funcionalidades Entregadas</p>
+                        <ul>
+                            <li>Guardar y compartir búsquedas via URLs persistentes</li>
+                            <li>Exportación de resultados a CSV y TXT</li>
+                            <li>Paginación moderna con selector numérico de página</li>
+                            <li>Registros bibliográficos rediseñados, responsivos y accesibles</li>
+                            <li>Interconexión entre Diccionarios Técnicos y catálogo bibliográfico</li>
+                        </ul>
+                    </div>
+
+                    <div class="tag-row">
+                        <span class="tag">ISIS / WXIS</span>
+                        <span class="tag">.xis Scripting</span>
+                        <span class="tag">JSON APIs</span>
+                        <span class="tag">RDA / MARC21</span>
+                        <span class="tag">Apache Admin</span>
+                        <span class="tag">HTML5 / CSS3 / JS</span>
+                        <span class="tag">SEO &amp; Security</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="stack">
+        <div class="container reveal">
+            <div class="section-header">
+                <p class="section-num">02. Core Capabilities</p>
+                <h2>Stack &amp; Skills</h2>
+            </div>
+
+            <div class="caps-grid">
+                <div class="cap-cell">
+                    <p class="cap-label">Data Engine</p>
+                    <p class="cap-title">ISIS / WXIS Scripting</p>
+                    <p class="cap-desc">Modelado y reescritura de scripts <code>.xis</code> y archivos <code>.fdt</code> para motores de búsqueda bibliográficos legacy.</p>
+                </div>
+                <div class="cap-cell">
+                    <p class="cap-label">Standards</p>
+                    <p class="cap-title">RDA / MARC21 / AACR2</p>
+                    <p class="cap-desc">Normalización internacional de metadatos bibliográficos. Tesauros, descriptores y vocabularios controlados.</p>
+                </div>
+                <div class="cap-cell">
+                    <p class="cap-label">Modern Stack</p>
+                    <p class="cap-title">HTML5 / CSS3 / JS / JSON</p>
+                    <p class="cap-desc">Construcción de SPAs e interfaces responsivas. Vibe coding con Claude y Gemini como multiplicadores de entrega.</p>
+                </div>
+                <div class="cap-cell">
+                    <p class="cap-label">Infrastructure</p>
+                    <p class="cap-title">Apache / SEO / Security</p>
+                    <p class="cap-desc">Gestión de servidores WAMP/Apache. Security hardening, headers y optimización para buscadores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="about">
+        <div class="container reveal">
+            <div class="section-header">
+                <p class="section-num">03. Professional Profile</p>
+                <h2>About Me</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Mi perfil es inusual en el mercado tech, y ese es exactamente mi mayor valor. Cuento con dos títulos de grado por la <strong>Universidad de Buenos Aires (UBA)</strong> — en Historia y en Bibliotecología y Ciencia de la Información — que me dieron algo que la mayoría de los developers no tiene: <strong>rigor metodológico para estructurar volúmenes masivos de datos complejos</strong>.</p>
+                    <p>Trabajo en la <strong>Biblioteca Central del INTI</strong>, donde tomé un sistema web legacy que nadie quería tocar, lo entendí desde los cimientos mediante ingeniería inversa, y lo reconstruí completamente: reescribí scripts de búsqueda, modifiqué bases de datos y llevé la interfaz a estándares modernos.</p>
+                    <p>Utilizo IA (vibe coding con Claude y Gemini) como multiplicador de velocidad de entrega. El resultado no es conceptual: vive en producción y es usado por investigadores del INTI todos los días.</p>
+                </div>
+
+                <div>
+                    <div class="edu-card">
+                        <p class="edu-label">Educación &amp; Certificaciones</p>
+                        <div class="edu-item">
+                            <span class="edu-name">Lic. en Ciencia de la Información (UBA)</span>
+                            <span class="edu-status">En curso</span>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-name">Prof. en Bibliotecología y Ciencia de la Información (UBA)</span>
+                            <span class="edu-status">Grado</span>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-name">Prof. en Historia (UBA)</span>
+                            <span class="edu-status">Grado</span>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-name">Inglés — Laboratorio de Idiomas UBA</span>
+                            <span class="edu-status">C1 Advanced</span>
+                        </div>
+                        <div class="edu-item">
+                            <span class="edu-name">Greenstone 3 / ABCD / Koha</span>
+                            <span class="edu-status">Producción</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <span>Joel Foti</span>
+    <span>Buenos Aires, Argentina · 2026</span>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            const t = document.querySelector(link.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
