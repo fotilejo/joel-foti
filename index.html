@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" data-lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joel Foti — Information Architect & Systems Developer</title>
-    <meta name="description" content="Especialista en sistemas de información, modernización de datos legacy, grafos de conocimiento e interfaces web. Buenos Aires, Argentina.">
+    <title>Joel Foti — Information Architect &amp; Systems Developer</title>
+    <meta name="description" content="Especialista en sistemas de información: modernización de datos legacy, arquitectura semántica RDF/SPARQL, Linked Open Data e infraestructura web. Buenos Aires, Argentina.">
+    <meta property="og:title" content="Joel Foti — Information Architect &amp; Systems Developer">
+    <meta property="og:description" content="De cuatro bases ISIS al grafo RDF: 145.177 entidades y 2,36 millones de tripletas publicadas como Linked Open Data.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://fotilejo.github.io/Joel-Foti/">
+    <link rel="canonical" href="https://fotilejo.github.io/Joel-Foti/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             /* ── PALETA SOFT DARK (Fondos suaves, Texto iluminado) ── */
@@ -16,20 +21,20 @@
             --surface2:  #373e47; /* Elementos secundarios */
             --border:    rgba(255, 255, 255, 0.12);
             --border2:   rgba(255, 255, 255, 0.20);
-            
+
             /* Textos aclarados para máxima legibilidad */
-            --muted:     #9ca3af; /* Textos secundarios: gris claro y legible */
-            --text:      #cbd5e1; 
-            --body:      #e2e8f0; /* Texto principal: casi blanco perlado, perfecto para leer */
-            --heading:   #ffffff; /* Títulos: blanco puro y nítido */
-            
+            --muted:     #9ca3af;
+            --text:      #cbd5e1;
+            --body:      #e2e8f0;
+            --heading:   #ffffff;
+
             /* ── ACENTOS INTENSOS (Armonizados) ── */
-            --accent:    #539bf5; /* Azul/Cyan suave y tecnológico */
+            --accent:    #539bf5;
             --accent2:   #8cb6ff;
-            --green:     #57ab5a; /* Verde relajado */
-            --amber:     #e3b341; /* Ámbar/Mostaza */
-            --pink:      #e275ad; /* Rosa atenuado */
-            
+            --green:     #57ab5a;
+            --amber:     #e3b341;
+            --pink:      #e275ad;
+
             --mono:      'JetBrains Mono', monospace;
             --serif:     'Fraunces', serif;
             --sans:      'DM Sans', sans-serif;
@@ -50,16 +55,35 @@
 
         a { color: inherit; text-decoration: none; transition: color 0.2s; }
 
+        /* ── I18N ── */
+        html[data-lang="es"] .i18n-en { display: none !important; }
+        html[data-lang="en"] .i18n-es { display: none !important; }
+
+        .lang-toggle {
+            display: flex; align-items: center; border: 1px solid var(--border2);
+            border-radius: 100px; overflow: hidden; font-family: var(--mono);
+            font-size: 0.62rem; letter-spacing: 0.08em; flex-shrink: 0;
+        }
+        .lang-toggle button {
+            background: transparent; border: none; color: var(--muted);
+            font: inherit; padding: 0.35rem 0.7rem; cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-toggle button:hover { color: var(--body); }
+        .lang-toggle button[aria-pressed="true"] { background: var(--accent); color: var(--bg); font-weight: 700; }
+
         /* ── NAV ── */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 200;
             display: flex; justify-content: space-between; align-items: center;
+            gap: 1rem;
             padding: 1rem 2.5rem;
             background: rgba(34, 39, 46, 0.85);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
         .nav-logo { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); letter-spacing: 0.04em; font-weight: 500;}
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
         .nav-links { display: flex; gap: 2rem; font-family: var(--mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; }
         .nav-links a:hover { color: var(--accent); }
 
@@ -115,9 +139,27 @@
 
         .hero-desc {
             font-family: var(--sans); font-size: 1.05rem; font-weight: 400;
-            color: var(--body); max-width: 54ch; margin-bottom: 2.5rem;
+            color: var(--body); max-width: 56ch; margin-bottom: 2.5rem;
             line-height: 1.9; border-left: 2px solid var(--accent);
             padding-left: 1.25rem;
+        }
+
+        /* ── HERO METRICS ── */
+        .metrics-strip {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; background: var(--border);
+            border: 1px solid var(--border); border-radius: 6px;
+            overflow: hidden; margin-bottom: 2.5rem; max-width: 720px;
+        }
+        .metric-cell { background: var(--surface); padding: 1.1rem 1.25rem; }
+        .metric-num {
+            font-family: var(--mono); font-size: 1.35rem; font-weight: 700;
+            color: var(--accent); line-height: 1.1; display: block;
+        }
+        .metric-label {
+            font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--muted); margin-top: 0.35rem;
+            display: block; line-height: 1.5;
         }
 
         .contact-row {
@@ -182,7 +224,7 @@
         .proj-section:first-of-type { border-top: none; padding-top: 0; }
 
         /* ── BA GRID ── */
-        .ba-intro { font-family: var(--sans); font-size: 0.95rem; color: var(--body); margin-bottom: 1.75rem; max-width: 62ch; line-height: 1.8; }
+        .ba-intro { font-family: var(--sans); font-size: 0.95rem; color: var(--body); margin-bottom: 1.75rem; max-width: 64ch; line-height: 1.8; }
 
         .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
 
@@ -205,24 +247,6 @@
         .ba-thumb:hover { border-color: var(--border2); }
         .ba-thumb img { width: 100%; height: auto; display: block; opacity: 0.85; transition: opacity 0.3s; }
         .ba-thumb:hover img { opacity: 1; }
-
-        /* BROWSER MOCKUP */
-        .browser-mockup {
-            border: 1px solid var(--border); border-radius: 6px;
-            overflow: hidden; background: var(--surface);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
-            cursor: zoom-in; position: relative;
-        }
-        .browser-bar {
-            background: var(--surface2); padding: 0.5rem 0.75rem;
-            display: flex; gap: 0.35rem; border-bottom: 1px solid var(--border);
-        }
-        .browser-bar i { width: 9px; height: 9px; border-radius: 50%; }
-        .browser-bar i:nth-child(1) { background: #fca5a5; border: 1px solid #f87171;}
-        .browser-bar i:nth-child(2) { background: #fcd34d; border: 1px solid #facc15;}
-        .browser-bar i:nth-child(3) { background: #86efac; border: 1px solid #4ade80;}
-        .browser-mockup img { width: 100%; display: block; opacity: 0.95; transition: opacity 0.3s; }
-        .browser-mockup:hover img { opacity: 1; }
 
         /* fader showcase */
         .ba-fader-showcase {
@@ -255,6 +279,7 @@
             text-transform: uppercase; color: var(--muted); margin-bottom: 0.85rem; font-weight: 500;
         }
         .case-block p { font-size: 0.95rem; line-height: 1.8; color: var(--body); }
+        .case-block p + p { margin-top: 0.75rem; }
 
         .case-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
         .case-block ul li {
@@ -263,6 +288,18 @@
         }
         .case-block ul li::before { content: '→'; color: var(--accent); position: absolute; left: 0; top: 0.05em; font-weight: bold;}
         .case-block ul li code { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; background: var(--surface2); padding: 0.1rem 0.3rem; border-radius: 3px; color: var(--heading);}
+        .case-block strong { color: var(--heading); font-weight: 500; }
+
+        /* ── STAT GRID (dentro de proyectos) ── */
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--border);
+            border: 1px solid var(--border); border-radius: 4px;
+            overflow: hidden; margin-top: 0.5rem;
+        }
+        .stat-cell { background: var(--surface2); padding: 1rem 1.1rem; }
+        .stat-num { font-family: var(--mono); font-size: 1.15rem; font-weight: 700; color: var(--heading); display: block; line-height: 1.2; }
+        .stat-desc { font-family: var(--mono); font-size: 0.57rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; display: block; line-height: 1.5; }
 
         /* ── HUMAN IN THE LOOP ── */
         .hitl {
@@ -287,6 +324,8 @@
         }
         .hitl ul li::before { content: '→'; color: var(--accent); position: absolute; left: 0; top: 0.05em; }
         .hitl p { font-size: 0.9rem; color: var(--body); line-height: 1.75; }
+        .hitl strong { color: var(--heading); font-weight: 500; }
+        .hitl code { font-family: var(--mono); font-size: 0.8rem; background: var(--surface2); padding: 0.1rem 0.3rem; border-radius: 3px; color: var(--heading); }
 
         /* ── TAGS ── */
         .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
@@ -295,12 +334,13 @@
             border: 1px solid rgba(255, 255, 255, 0.15); color: var(--text);
             background: rgba(255, 255, 255, 0.05); transition: all 0.2s; border-radius: 100px; font-weight: 500;
         }
-        
-        /* Colores específicos para tags al hacer hover, manteniendo tu paleta intensa */
+
         .tag:hover { border-color: var(--accent); background: var(--accent); color: var(--bg); }
         .proj-section:nth-of-type(2) .tag:hover { border-color: var(--green); background: var(--green); color: var(--bg); }
         .proj-section:nth-of-type(3) .tag:hover { border-color: var(--amber); background: var(--amber); color: var(--bg); }
-        .proj-section:nth-of-type(4) .tag:hover { border-color: var(--pink); background: var(--pink); color: var(--bg); }
+        .proj-section:nth-of-type(4) .tag:hover { border-color: var(--green); background: var(--green); color: var(--bg); }
+        .proj-section:nth-of-type(5) .tag:hover { border-color: var(--pink); background: var(--pink); color: var(--bg); }
+        .proj-section:nth-of-type(6) .tag:hover { border-color: var(--accent2); background: var(--accent2); color: var(--bg); }
 
         /* live badge */
         .live-badge {
@@ -362,23 +402,29 @@
         /* ── LIGHTBOX ── */
         .lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(34, 39, 46, 0.96); align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(4px);}
         .lightbox.open { display: flex; }
-        .lightbox img { 
-			width: 100%; 
-			height: 100%; 
-			max-width: 96vw; 
-			max-height: 96vh; 
-			object-fit: contain; 
-			border: none; 
-			filter: drop-shadow(0 25px 50px rgba(0,0,0,0.8));
-		}
+        .lightbox img {
+            width: 100%; height: 100%;
+            max-width: 96vw; max-height: 96vh;
+            object-fit: contain; border: none;
+            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.8));
+        }
         .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.8); cursor: pointer; letter-spacing: 0.1em; }
         .lightbox-close:hover { color: #fff; }
 
         /* ── REVEAL ── */
         .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .code-float, .live-dot, .ba-fader-showcase .ba-thumb { animation: none; }
+            .ba-fader-showcase .ba-thumb:nth-child(1) { opacity: 1; transform: none; }
+        }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 980px) {
+            .metrics-strip { grid-template-columns: 1fr 1fr; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+        }
         @media (max-width: 860px) {
             .ba-grid { grid-template-columns: 1fr; }
             .caps-grid { grid-template-columns: 1fr 1fr; }
@@ -391,6 +437,9 @@
             .container { padding: 0 1.25rem; }
             .section-pad { padding: 4.5rem 0; }
             .caps-grid { grid-template-columns: 1fr; }
+            .metrics-strip { grid-template-columns: 1fr 1fr; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .case-card { padding: 1.5rem; }
             footer { flex-direction: column; gap: 0.5rem; text-align: center; }
             .proj-header { flex-direction: column; gap: 0.75rem; }
             .proj-num { font-size: 2rem; }
@@ -406,11 +455,17 @@
 
 <nav>
     <span class="nav-logo">&lt;joel_foti /&gt;</span>
-    <div class="nav-links">
-        <a href="#work">01. Projects</a>
-        <a href="#stack">02. Capabilities</a>
-        <a href="#experience">03. Experience</a>
-        <a href="#about">04. Profile</a>
+    <div class="nav-right">
+        <div class="nav-links">
+            <a href="#work"><span class="i18n-es">01. Proyectos</span><span class="i18n-en">01. Projects</span></a>
+            <a href="#stack"><span class="i18n-es">02. Capacidades</span><span class="i18n-en">02. Capabilities</span></a>
+            <a href="#experience"><span class="i18n-es">03. Experiencia</span><span class="i18n-en">03. Experience</span></a>
+            <a href="#about"><span class="i18n-es">04. Perfil</span><span class="i18n-en">04. Profile</span></a>
+        </div>
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+            <button type="button" data-set-lang="es" aria-pressed="true">ES</button>
+            <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
     </div>
 </nav>
 
@@ -420,59 +475,70 @@
         <div class="container">
             <div style="position:relative;">
 
-                <div class="code-float" aria-hidden="true"><pre># ISIS → JSON normalizer
-def build_suggest_index(db):
-    records = []
-    for mfn in range(1, db.count+1):
-        v = db.read(mfn)
-        records.append({
-            "term":  v[650][0],
-            "id":    mfn,
-            "scope": v[680][0] or ""
-        })
-    return json.dumps(records, ensure_ascii=False)
+                <div class="code-float" aria-hidden="true"><pre># ISIS CSV → RDF
+g.add((INTI[f"Recurso_{doc_id}"],
+       DCTERMS.subject,
+       INTI[f"Tema_{limpiar_uri(t)}"]))
 
-# Graph ingestion
-MERGE (d:Documento {uuid: row.id})
-MERGE (a:Autor {nombre: row.autor})
-MERGE (t:Tema {nombre: row.descriptor})
-MERGE (d)-[:ESCRITO_POR]->(a)
-MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
+# SPARQL — perfil de la colección
+SELECT ?tipo (COUNT(?d) AS ?n) WHERE {
+  ?d a inti:Documento ;
+     inti:tipoDocumental ?tipo .
+} GROUP BY ?tipo ORDER BY DESC(?n)</pre></div>
 
                 <p class="eyebrow">Information Architect &amp; Systems Developer</p>
 
                 <h1>
-                    Bridging the Gap Between<br>
-                    Legacy Data and<br>
-                    <em>Modern Architecture.</em>
+                    <span class="i18n-es">Del catálogo legacy<br>a la arquitectura<br><em>semántica.</em></span>
+                    <span class="i18n-en">Bridging the gap between<br>legacy data and<br><em>modern architecture.</em></span>
                 </h1>
 
                 <p class="hero-desc">
-                    Especialista en sistemas de información con foco en modernización de entornos legacy, arquitectura de metadatos, grafos de conocimiento y desarrollo de interfaces web eficientes. Del catálogo ISIS al grafo semántico — con criterio bibliotecológico en cada paso.
+                    <span class="i18n-es">Bibliotecario y especialista en sistemas de información. Diseño y construyo la infraestructura de datos de la Biblioteca del INTI: de cuatro bases ISIS heredadas a un grafo RDF de 2,36 millones de tripletas, consultable por SPARQL y publicado como Linked Open Data — más las herramientas para mantenerlo limpio.</span>
+                    <span class="i18n-en">Librarian and information systems specialist. I design and build the data infrastructure of the INTI Library (Argentina's National Institute of Industrial Technology): from four inherited ISIS databases to an RDF graph of 2.36 million triples, queryable over SPARQL and published as Linked Open Data — plus the tooling that keeps it clean.</span>
                 </p>
+
+                <div class="metrics-strip">
+                    <div class="metric-cell">
+                        <span class="metric-num">145.177</span>
+                        <span class="metric-label"><span class="i18n-es">Entidades modeladas</span><span class="i18n-en">Entities modelled</span></span>
+                    </div>
+                    <div class="metric-cell">
+                        <span class="metric-num">2,36 M</span>
+                        <span class="metric-label"><span class="i18n-es">Tripletas RDF publicadas</span><span class="i18n-en">RDF triples published</span></span>
+                    </div>
+                    <div class="metric-cell">
+                        <span class="metric-num">5.762</span>
+                        <span class="metric-label"><span class="i18n-es">Términos del tesauro</span><span class="i18n-en">Thesaurus terms</span></span>
+                    </div>
+                    <div class="metric-cell">
+                        <span class="metric-num">59.605</span>
+                        <span class="metric-label"><span class="i18n-es">Correcciones de catalogación</span><span class="i18n-en">Cataloguing corrections</span></span>
+                    </div>
+                </div>
 
                 <div class="contact-row">
                     <a href="mailto:fotilejo@gmail.com">
-                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                         fotilejo@gmail.com
                     </a>
                     <a href="https://github.com/fotilejo" target="_blank" rel="noopener">
-                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
                         github.com/fotilejo
                     </a>
                     <a href="https://www.linkedin.com/in/joel-foti" target="_blank" rel="noopener">
-                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zm-11 19H5v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+                        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0H5C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zm-11 19H5v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
                         LinkedIn
                     </a>
                     <span class="badge">
-                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
-                        C1 Advanced English
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                        <span class="i18n-es">Inglés B2 · UBA</span><span class="i18n-en">English B2 · UBA</span>
                     </span>
                 </div>
 
                 <div class="cta-row">
-                    <a href="#work" class="btn">View Projects</a>
-                    <a href="http://www-biblio.inti.gob.ar/prueba/" target="_blank" rel="noopener" class="btn btn-ghost">Live Demo ↗</a>
+                    <a href="#work" class="btn"><span class="i18n-es">Ver proyectos</span><span class="i18n-en">View projects</span></a>
+                    <a href="https://biblioteca.inti.gob.ar/" target="_blank" rel="noopener" class="btn btn-ghost"><span class="i18n-es">Sitio en producción ↗</span><span class="i18n-en">Live site ↗</span></a>
                 </div>
             </div>
         </div>
@@ -483,243 +549,505 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
     <section id="work" class="section-pad">
         <div class="container reveal">
             <div class="sec-header">
-                <p class="section-label">01. Projects</p>
-                <h2>Del catálogo legacy<br>al grafo de conocimiento</h2>
+                <p class="section-label"><span class="i18n-es">01. Proyectos</span><span class="i18n-en">01. Projects</span></p>
+                <h2>
+                    <span class="i18n-es">Cuatro bases heredadas,<br>un grafo de conocimiento</span>
+                    <span class="i18n-en">Four inherited databases,<br>one knowledge graph</span>
+                </h2>
             </div>
 
+            <!-- ─────────────── 01 ─────────────── -->
             <div class="proj-section">
                 <div class="proj-header">
                     <span class="proj-num">01</span>
                     <div class="proj-meta">
-                        <p class="proj-tag" style="color:var(--accent);">Reingeniería de Sistemas · Web Development</p>
-                        <h3 class="proj-title">Modernización del Sistema Web de la Biblioteca INTI</h3>
-                        <a class="proj-url" href="http://www-biblio.inti.gob.ar/prueba/" target="_blank" rel="noopener">www-biblio.inti.gob.ar/prueba/ ↗</a>
+                        <p class="proj-tag" style="color:var(--accent);"><span class="i18n-es">Reingeniería de sistemas · Desarrollo web</span><span class="i18n-en">Systems Re-engineering · Web Development</span></p>
+                        <h3 class="proj-title"><span class="i18n-es">Plataforma web de la Biblioteca INTI</span><span class="i18n-en">INTI Library Web Platform</span></h3>
+                        <a class="proj-url" href="https://biblioteca.inti.gob.ar/" target="_blank" rel="noopener">biblioteca.inti.gob.ar ↗</a>
                     </div>
                 </div>
 
-                <p class="ba-intro">Una interfaz de los años 2000, sin documentación, sin diseño responsivo y con lógica de búsqueda dispersa en archivos sin estructura. Abajo, el antes y el después.</p>
+                <p class="ba-intro">
+                    <span class="i18n-es">Una interfaz de los años 2000, sin documentación, sin diseño responsivo y con la lógica de búsqueda dispersa en archivos sin estructura. Hoy es un portal público con catálogo semántico, tesauro navegable, diccionarios técnicos, guía de fuentes, endpoint SPARQL documentado y tour guiado. 30 versiones iteradas, 186 commits.</span>
+                    <span class="i18n-en">A 2000s-era interface with no documentation, no responsive design, and search logic scattered across unstructured files. Today it is a public portal with a semantic catalogue, a browsable thesaurus, technical dictionaries, a source guide, a documented SPARQL endpoint and a guided tour. 30 iterated versions, 186 commits.</span>
+                </p>
 
-				<div class="ba-grid">
-					<div>
-						<p class="ba-col-label before">Before — Sistema legacy</p>
-						<div class="ba-thumbs">
-							<div class="ba-thumb"><img src="IntiViejo1.jpg" alt="Sitio web anterior de la Biblioteca INTI — vista 1"></div>
-							<div class="ba-thumb"><img src="IntiViejo2.jpg" alt="Sitio web anterior de la Biblioteca INTI — vista 2"></div>
-							<div class="ba-thumb"><img src="IntiViejo3.jpg" alt="Sitio web anterior de la Biblioteca INTI — vista 3"></div>
-						</div>
-					</div>
-					<div>
-						<p class="ba-col-label after">After — Sistema modernizado</p>
-						<div class="ba-thumbs">
-							<div class="ba-thumb">
-								<span class="live-badge"><span class="live-dot"></span>Live</span>
-								<img src="1_Inti_Home.jpg" alt="Nuevo sitio web de la Biblioteca INTI — Home">
-							</div>
-							<div class="ba-thumb"><img src="2_Inti_Busqueda.jpg" alt="Nuevo catálogo INTI — Resultados de búsqueda"></div>
-							<div class="ba-thumb"><img src="3_Inti_Registro.jpg" alt="Nuevo catálogo INTI — Registro bibliográfico completo"></div>
-						</div>
-					</div>
-				</div>
+                <div class="ba-grid">
+                    <div>
+                        <p class="ba-col-label before"><span class="i18n-es">Antes — Sistema legacy</span><span class="i18n-en">Before — Legacy system</span></p>
+                        <div class="ba-thumbs">
+                            <div class="ba-thumb"><img src="IntiViejo1.jpg" alt="Biblioteca INTI — legacy site, view 1" loading="lazy"></div>
+                            <div class="ba-thumb"><img src="IntiViejo2.jpg" alt="Biblioteca INTI — legacy site, view 2" loading="lazy"></div>
+                            <div class="ba-thumb"><img src="IntiViejo3.jpg" alt="Biblioteca INTI — legacy site, view 3" loading="lazy"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="ba-col-label after"><span class="i18n-es">Después — Plataforma actual</span><span class="i18n-en">After — Current platform</span></p>
+                        <div class="ba-thumbs">
+                            <div class="ba-thumb">
+                                <span class="live-badge"><span class="live-dot"></span>Live</span>
+                                <img src="1_Inti_Home.jpg" alt="Biblioteca INTI — new portal, home" loading="lazy">
+                            </div>
+                            <div class="ba-thumb"><img src="2_Inti_Busqueda.jpg" alt="Biblioteca INTI — semantic catalogue, search results" loading="lazy"></div>
+                            <div class="ba-thumb"><img src="3_Inti_Registro.jpg" alt="Biblioteca INTI — full bibliographic record" loading="lazy"></div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="case-card">
                     <div class="case-block">
-                        <p class="case-block-label">The Problem</p>
-                        <p>Sistema web legacy construido sobre bases ISIS y scripts WXIS sin documentación. La lógica de búsqueda estaba dispersa en archivos <code>.xis</code> y formatos ISIS, operando como silos inaccesibles para la web moderna. Sin diseño responsivo, sin exportación de datos, sin sugerencias de búsqueda.</p>
+                        <p class="case-block-label"><span class="i18n-es">El problema</span><span class="i18n-en">The problem</span></p>
+                        <p class="i18n-es">Sistema web legacy construido sobre bases <strong>ISIS</strong> y scripts <strong>WXIS</strong> sin documentación. La lógica de búsqueda vivía dispersa en archivos <code>.xis</code> y formatos ISIS, operando como silos inaccesibles para la web moderna: sin diseño responsivo, sin exportación de datos, sin sugerencias, sin forma de compartir una búsqueda.</p>
+                        <p class="i18n-en">A legacy web system built on <strong>ISIS</strong> databases and undocumented <strong>WXIS</strong> scripts. Search logic was scattered across <code>.xis</code> files and ISIS format definitions, operating as silos inaccessible to the modern web: no responsive design, no data export, no suggestions, no way to share a search.</p>
                     </div>
                     <div class="case-block">
-                        <p class="case-block-label">Engineering Process</p>
-                        <ul>
-                            <li>Auditoría e ingeniería inversa de scripts <code>.xis</code> y archivos <code>.fdt</code> de cada base de datos</li>
-                            <li>Reescritura completa de los 5 scripts de búsqueda y exportación (<code>simple.xis</code>, <code>avanzada.xis</code>, <code>descriptor.xis</code>, <code>registrounico.xis</code>, <code>export.xis</code>)</li>
-                            <li>Extracción del tesauro → normalización a JSON → sistema de sugerencias en tiempo real integrado al buscador</li>
-                            <li>Búsqueda avanzada multi-campo con limpieza de caracteres especiales para mejorar el recall</li>
-                            <li>SEO técnico y security hardening en servidor Apache (headers, caché, configuración)</li>
+                        <p class="case-block-label"><span class="i18n-es">Proceso de ingeniería</span><span class="i18n-en">Engineering process</span></p>
+                        <ul class="i18n-es">
+                            <li>Ingeniería inversa de los scripts <code>.xis</code> y archivos <code>.fdt</code> de cada base para mapear la lógica completa de búsqueda y visualización</li>
+                            <li>Reconstrucción del frontend como aplicación estática modular: catálogo, tesauro, diccionarios, guía de fuentes, búsquedas guardadas y tour interactivo</li>
+                            <li>Migración del backend de consulta a <strong>SPARQL sobre Apache Jena Fuseki</strong>, con índice <strong>Lucene</strong> y analizador español para búsqueda por texto</li>
+                            <li>Búsqueda federada que impacta simultáneamente en catálogo, diccionarios, tesauro y guía de fuentes</li>
+                            <li>Sugerencias semánticas en tiempo real a partir de entidades reales del grafo (autores, instituciones, temas)</li>
+                            <li>Expansión por prefijo con reglas anti-ruido: se amplían las palabras de cuatro o más letras, no los códigos ni los números</li>
+                            <li>Auditoría y eliminación de código muerto heredado de ISIS en dos pasadas documentadas</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li>Reverse-engineered the <code>.xis</code> scripts and <code>.fdt</code> files of each database to map the full search and display logic</li>
+                            <li>Rebuilt the frontend as a modular static application: catalogue, thesaurus, dictionaries, source guide, saved searches and interactive tour</li>
+                            <li>Migrated the query backend to <strong>SPARQL on Apache Jena Fuseki</strong>, with a <strong>Lucene</strong> index and Spanish analyzer for full-text search</li>
+                            <li>Federated search hitting catalogue, dictionaries, thesaurus and source guide simultaneously</li>
+                            <li>Real-time semantic suggestions drawn from actual graph entities (authors, institutions, subjects)</li>
+                            <li>Prefix expansion with anti-noise rules: words of four or more characters expand, codes and numbers do not</li>
+                            <li>Audited and removed ISIS-era dead code across two documented passes</li>
                         </ul>
                     </div>
                     <div class="case-block">
-                        <p class="case-block-label">Delivered Features</p>
-                        <ul>
-                            <li>Guardar y compartir búsquedas vía URLs persistentes</li>
-                            <li>Exportación de resultados a CSV y TXT</li>
-                            <li>Paginación moderna con selector numérico de página</li>
-                            <li>Registros bibliográficos rediseñados, responsivos y accesibles</li>
-                            <li>Interconexión entre Diccionarios Técnicos y Catálogo Bibliográfico</li>
+                        <p class="case-block-label"><span class="i18n-es">Funcionalidades entregadas</span><span class="i18n-en">Delivered features</span></p>
+                        <ul class="i18n-es">
+                            <li>Exportación bibliográfica en <strong>RIS, BibTeX, CSV, APA e ISO</strong></li>
+                            <li>Guardado de búsquedas y documentos con persistencia local, sin cuentas ni contraseñas</li>
+                            <li>URLs persistentes que reproducen una consulta con todos sus filtros aplicados</li>
+                            <li>Facetas de año, idioma, disponibilidad y filtro de producción propia INTI</li>
+                            <li>Endpoint SPARQL público y documentado para consumo por terceros</li>
+                            <li>Enriquecimiento LOD en vivo: definiciones de Wikipedia y grafos de Wikidata dentro de la ficha del término</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li>Bibliographic export in <strong>RIS, BibTeX, CSV, APA and ISO</strong></li>
+                            <li>Saved searches and documents with local persistence — no accounts, no passwords</li>
+                            <li>Persistent URLs that reproduce a query with every filter applied</li>
+                            <li>Facets for year, language, availability, plus an INTI-own-production filter</li>
+                            <li>Public, documented SPARQL endpoint for third-party consumption</li>
+                            <li>Live LOD enrichment: Wikipedia definitions and Wikidata graphs inside each term record</li>
                         </ul>
                     </div>
                     <div class="tag-row">
+                        <span class="tag">SPARQL</span>
+                        <span class="tag">Apache Jena Fuseki</span>
+                        <span class="tag">Lucene</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML5 / CSS3</span>
+                        <span class="tag">nginx</span>
                         <span class="tag">ISIS / WXIS</span>
-                        <span class="tag">.xis Scripting</span>
-                        <span class="tag">Apache Admin</span>
-                        <span class="tag">HTML5 / CSS3 / JS</span>
-                        <span class="tag">JSON APIs</span>
-                        <span class="tag">SEO &amp; Security</span>
+                        <span class="tag">SEO</span>
                     </div>
                 </div>
             </div>
 
+            <!-- ─────────────── 02 ─────────────── -->
             <div class="proj-section">
                 <div class="proj-header">
                     <span class="proj-num">02</span>
                     <div class="proj-meta">
-                        <p class="proj-tag" style="color:var(--green);">Data Engineering · Python · ETL</p>
-                        <h3 class="proj-title">Motor de Transformación a JSON</h3>
-                        <a class="proj-url" href="https://github.com/fotilejo/data-normalizer-etl" target="_blank" rel="noopener">github.com/fotilejo/data-normalizer-etl ↗</a>
+                        <p class="proj-tag" style="color:var(--green);"><span class="i18n-es">Ingeniería de datos · Python · ETL</span><span class="i18n-en">Data Engineering · Python · ETL</span></p>
+                        <h3 class="proj-title"><span class="i18n-es">Pipeline de datos: de ISIS a RDF y JSON</span><span class="i18n-en">Data Pipeline: from ISIS to RDF and JSON</span></h3>
+                        <a class="proj-url" href="https://github.com/fotilejo/Herramienta-Exportacion-Bases" target="_blank" rel="noopener">github.com/fotilejo/Herramienta-Exportacion-Bases ↗</a>
                     </div>
                 </div>
 
-                <p class="ba-intro">El contraste visual de la curaduría de datos: a la izquierda, la materia prima (CSV legacy) con delimitadores anómalos. A la derecha, el resultado de la transformación (JSON) con su jerarquía semántica recuperada.</p>
+                <p class="ba-intro">
+                    <span class="i18n-es">Un solo comando regenera las cuatro bases de la biblioteca hacia dos destinos: Turtle para el triplestore y espejos JSON para el navegador. Ambos se escriben <strong>en la misma pasada desde la misma fuente</strong>, así el espejo no puede desincronizarse de lo que consulta el catálogo. El resultado publicado son 2,36 millones de tripletas sobre una ontología propia.</span>
+                    <span class="i18n-en">A single command regenerates the library's four databases towards two targets: Turtle for the triplestore and JSON mirrors for the browser. Both are written <strong>in the same pass from the same source</strong>, so the mirror cannot drift from what the catalogue queries. The published result is 2.36 million triples on a purpose-built ontology.</span>
+                </p>
 
                 <div class="ba-grid">
                     <div>
-                        <p class="ba-col-label before">Before — CSV Legacy en crudo</p>
+                        <p class="ba-col-label before"><span class="i18n-es">Antes — CSV legacy en crudo</span><span class="i18n-en">Before — Raw legacy CSV</span></p>
                         <div class="ba-thumbs">
-                            <div class="ba-thumb"><img src="etl_antes.jpg" alt="Vista del CSV exportado con errores de formato"></div>
+                            <div class="ba-thumb"><img src="etl_antes.jpg" alt="Raw CSV export with formatting errors" loading="lazy"></div>
                         </div>
                     </div>
                     <div>
-                        <p class="ba-col-label after">After — JSON Estructurado</p>
+                        <p class="ba-col-label after"><span class="i18n-es">Después — Datos estructurados</span><span class="i18n-en">After — Structured data</span></p>
                         <div class="ba-thumbs">
-                            <div class="ba-thumb"><img src="etl_despues.jpg" alt="Vista del archivo JSON limpio, normalizado y con listas anidadas"></div>
+                            <div class="ba-thumb"><img src="etl_despues.jpg" alt="Clean, normalised structured output with nested lists" loading="lazy"></div>
+                            <div class="ba-thumb"><img src="bibliotecaJSON.jpg" alt="Normalised bibliographic JSON structure" loading="lazy"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="case-card">
                     <div class="case-block">
-                        <p class="case-block-label">The Problem</p>
-                        <p>Las exportaciones masivas de sistemas bibliotecológicos legacy presentan inconsistencias críticas — conflictos de <em>encoding</em>, delimitadores inyectados, campos repetibles colapsados en texto plano — que impiden su migración a bases de datos modernas.</p>
+                        <p class="case-block-label"><span class="i18n-es">El grafo resultante</span><span class="i18n-en">The resulting graph</span></p>
+                        <div class="stat-grid">
+                            <div class="stat-cell"><span class="stat-num">68.914</span><span class="stat-desc"><span class="i18n-es">Recursos bibliográficos</span><span class="i18n-en">Bibliographic resources</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">21.672</span><span class="stat-desc"><span class="i18n-es">Personas / autores</span><span class="i18n-en">People / authors</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">15.786</span><span class="stat-desc"><span class="i18n-es">Series y colecciones</span><span class="i18n-en">Series &amp; collections</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">14.900</span><span class="stat-desc"><span class="i18n-es">Organizaciones</span><span class="i18n-en">Organisations</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">12.638</span><span class="stat-desc"><span class="i18n-es">Conceptos temáticos</span><span class="i18n-en">Subject concepts</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">3.721</span><span class="stat-desc"><span class="i18n-es">Eventos y congresos</span><span class="i18n-en">Events &amp; conferences</span></span></div>
+                        </div>
+                        <p class="i18n-es" style="margin-top:1rem;">Sobre el catálogo (49.592 documentos, 14.023 publicaciones seriadas y 5.299 normas técnicas) se suman el tesauro, los 7.209 términos de los tres diccionarios técnicos y las 682 fuentes de la guía: <strong>145.177 entidades y 2.361.110 tripletas</strong> en total.</p>
+                        <p class="i18n-en" style="margin-top:1rem;">On top of the catalogue (49,592 documents, 14,023 serials and 5,299 technical standards) come the thesaurus, the 7,209 terms of the three technical dictionaries and the 682 entries of the source guide: <strong>145,177 entities and 2,361,110 triples</strong> in total.</p>
                     </div>
                     <div class="case-block">
-                        <p class="case-block-label">Engineering Process</p>
-                        <ul>
-                            <li>Script de diagnóstico exploratorio (EDA) para mapear la estructura de la base cruda</li>
-                            <li>Limpieza estructural con Pandas: purga de nulos y estandarización <code>snake_case</code></li>
-                            <li>Transformación de cadenas planas en listas iterables para recuperar la jerarquía de metadatos</li>
-                            <li>Exportación a JSON estructurado, listo para ingesta en bases de datos de grafos</li>
+                        <p class="case-block-label"><span class="i18n-es">Modelado</span><span class="i18n-en">Modelling</span></p>
+                        <p class="i18n-es">Diseñé una <strong>ontología OWL propia</strong> como perfil de aplicación que unifica las tres bases bibliográficas bajo una jerarquía común (<code>RecursoBibliografico</code> → <code>Documento</code> / <code>Norma</code> / <code>PublicacionSeriada</code>), reutilizando vocabularios estándar en lugar de inventarlos: <strong>BIBFRAME</strong> para descripción bibliográfica, <strong>Dublin Core Terms</strong> para metadatos, <strong>SKOS</strong> para conceptos, <strong>schema.org</strong> para personas, organizaciones y eventos, y <strong>PROV-O</strong> para trazabilidad de procedencia.</p>
+                        <p class="i18n-en">I designed a <strong>purpose-built OWL ontology</strong> as an application profile unifying the three bibliographic databases under a common hierarchy (<code>RecursoBibliografico</code> → <code>Documento</code> / <code>Norma</code> / <code>PublicacionSeriada</code>), reusing standard vocabularies rather than inventing them: <strong>BIBFRAME</strong> for bibliographic description, <strong>Dublin Core Terms</strong> for metadata, <strong>SKOS</strong> for concepts, <strong>schema.org</strong> for people, organisations and events, and <strong>PROV-O</strong> for provenance.</p>
+                    </div>
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Pipeline</span><span class="i18n-en">Pipeline</span></p>
+                        <ul class="i18n-es">
+                            <li>Re-exportación en vivo desde ISIS vía CISIS, con parseo de subcampos, normalización de países a ISO y resolución de relaciones entre normas y revistas</li>
+                            <li><strong>Control de autoridades automatizado:</strong> deduplicación y normalización de nombres de personas e instituciones para que cada entidad sea un nodo único, no un string repetido miles de veces</li>
+                            <li>Despiece de campos repetibles colapsados en entidades independientes con URI propia</li>
+                            <li>Serialización a Turtle e ingesta en <strong>Fuseki con TDB2</strong> más índice <strong>Lucene</strong> configurado con analizador español</li>
+                            <li>Enriquecimiento de los diccionarios técnicos con <code>skos:exactMatch</code> a <strong>Wikidata y PubChem</strong>: 4.492 equivalencias</li>
+                            <li>El tesauro publica únicamente los QIDs <strong>aprobados en la auditoría manual</strong> — el pipeline filtra por estado, no vuelca todo</li>
+                            <li>Copiado automático de los espejos JSON a la carpeta de datos del sitio al terminar cada base</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li>Live re-export from ISIS via CISIS, with subfield parsing, ISO country normalisation and resolution of relations between standards and journals</li>
+                            <li><strong>Automated authority control:</strong> deduplication and normalisation of person and institution names so each entity becomes a unique node instead of a string repeated thousands of times</li>
+                            <li>Decomposition of collapsed repeatable fields into independent entities with their own URIs</li>
+                            <li>Turtle serialisation and ingestion into <strong>Fuseki with TDB2</strong> plus a <strong>Lucene</strong> index configured with a Spanish analyzer</li>
+                            <li>Enrichment of the technical dictionaries with <code>skos:exactMatch</code> to <strong>Wikidata and PubChem</strong>: 4,492 equivalences</li>
+                            <li>The thesaurus publishes only the QIDs <strong>approved in manual audit</strong> — the pipeline filters by review status rather than dumping everything</li>
+                            <li>Automatic copying of the JSON mirrors into the site's data folder as each database finishes</li>
                         </ul>
                     </div>
                     <div class="hitl">
                         <div class="hitl-header">
                             <span class="hitl-icon">💡</span>
-                            <span class="hitl-label">Decisiones Arquitectónicas — Human-in-the-loop</span>
+                            <span class="hitl-label"><span class="i18n-es">Decisiones de arquitectura</span><span class="i18n-en">Architectural decisions</span></span>
                         </div>
-                        <p>Durante el desarrollo asistido por IA, identifiqué y corregí fallas críticas en la lógica estándar de los LLMs. Forcé la reescritura de los scripts para que evadan la trampa del metadato anómalo en cabeceras legacy (<code>sep=;</code>) que rompía la ingesta de Pandas, garantizando un pipeline a prueba de errores humanos de exportación.</p>
+                        <ul class="i18n-es">
+                            <li><strong>Mojibake masivo por desacuerdo de encoding:</strong> el orquestador escribía el CSV temporal en UTF-8 y el constructor lo leía como <code>windows-1252</code>. <strong>253.371 caracteres corruptos</strong> en todo el catálogo. Tras la corrección quedaron 24, que ya venían así de origen.</li>
+                            <li><strong>Pérdida silenciosa de datos:</strong> el constructor de la guía de fuentes seguía buscando subcampos ISIS que el extractor ya no emitía, y descartaba todo sin fallar. <strong>Cero enlaces relacionados donde debía haber 86.</strong> Lo peligroso de este bug es que no rompe nada: el archivo se genera igual, solo que incompleto.</li>
+                            <li><strong>Crash por semántica de <code>dict.get</code>:</strong> <code>.get(clave, [])</code> devuelve <code>None</code> —no el valor por defecto— cuando la clave existe con valor nulo. Un único registro con <code>narrower: null</code> abortaba la generación completa del tesauro.</li>
+                            <li><strong>Verificación, no confianza:</strong> conteo de sujetos del TTL contra conteo de registros de los CSV, y comparación de 690 registros comunes entre la versión vieja y la nueva. 689 idénticos; la única diferencia era una edición real hecha en ISIS, no una pérdida.</li>
+                            <li><strong>Hash URIs como límite estructural:</strong> documenté por qué el esquema <code>ontologia#Recurso_X</code> impide dereferenciar entidades — el fragmento nunca viaja al servidor — y diseñé la migración a un namespace de instancias sin hash con un resolver bajo el patrón <em>Cool URIs</em> (303 + content negotiation).</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li><strong>Mass mojibake from an encoding mismatch:</strong> the orchestrator wrote the temp CSV as UTF-8 while the builder read it as <code>windows-1252</code>. <strong>253,371 corrupted characters</strong> across the catalogue. After the fix, 24 remained — the ones that were like that in the source.</li>
+                            <li><strong>Silent data loss:</strong> the source-guide builder was still looking for ISIS subfields the extractor no longer emitted, and discarded everything without failing. <strong>Zero related links where there should have been 86.</strong> What makes this bug dangerous is that nothing breaks: the file is produced all the same, just incomplete.</li>
+                            <li><strong>Crash from <code>dict.get</code> semantics:</strong> <code>.get(key, [])</code> returns <code>None</code> — not the default — when the key exists with a null value. A single record with <code>narrower: null</code> aborted the entire thesaurus build.</li>
+                            <li><strong>Verify, don't trust:</strong> TTL subject counts checked against CSV record counts, plus a comparison of 690 records shared between old and new versions. 689 identical; the only difference was a real edit made in ISIS, not a loss.</li>
+                            <li><strong>Hash URIs as a structural limit:</strong> I documented why the <code>ontologia#Recurso_X</code> scheme prevents entity dereferencing — the fragment never reaches the server — and designed the migration to a hashless instance namespace with a resolver following the <em>Cool URIs</em> pattern (303 + content negotiation).</li>
+                        </ul>
                     </div>
                     <div class="tag-row">
-                        <span class="tag">Python 3.x</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">rdflib</span>
                         <span class="tag">Pandas</span>
-                        <span class="tag">ETL Pipeline</span>
-                        <span class="tag">Data Architecture</span>
-                        <span class="tag">JSON APIs</span>
+                        <span class="tag">RDF / Turtle</span>
+                        <span class="tag">OWL</span>
+                        <span class="tag">BIBFRAME</span>
+                        <span class="tag">SKOS</span>
+                        <span class="tag">PROV-O</span>
+                        <span class="tag">TDB2</span>
                     </div>
                 </div>
             </div>
 
+            <!-- ─────────────── 03 ─────────────── -->
             <div class="proj-section">
                 <div class="proj-header">
                     <span class="proj-num">03</span>
                     <div class="proj-meta">
-                        <p class="proj-tag" style="color:var(--amber);">Knowledge Graphs · Semantic Web</p>
-                        <h3 class="proj-title">Motor de Entidades y Control de Autoridades</h3>
-                        <a class="proj-url" href="https://github.com/fotilejo/Semantic-Entity-Extractor-Graph-Modeler" target="_blank" rel="noopener">github.com/fotilejo/Semantic-Entity-Extractor-Graph-Modeler ↗</a>
+                        <p class="proj-tag" style="color:var(--amber);"><span class="i18n-es">Vocabularios controlados · Linked Open Data</span><span class="i18n-en">Controlled Vocabularies · Linked Open Data</span></p>
+                        <h3 class="proj-title"><span class="i18n-es">Tesauro INTI: reestructuración y enriquecimiento LOD</span><span class="i18n-en">INTI Thesaurus: restructuring &amp; LOD enrichment</span></h3>
+                        <a class="proj-url" href="https://biblioteca.inti.gob.ar/" target="_blank" rel="noopener">biblioteca.inti.gob.ar → Tesauro ↗</a>
                     </div>
                 </div>
 
-                <p class="ba-intro">El salto a la Web Semántica: de un catálogo estructurado pero plano (islas de información) a una topología de grafo donde documentos, autores y temas se transforman en nodos interconectados matemáticamente.</p>
-
-                <div class="ba-grid">
-                    <div>
-                        <p class="ba-col-label before">Before — JSON Plano (materia prima)</p>
-                        <div class="ba-thumbs">
-                            <div class="ba-thumb"><img src="bibliotecaJSON.jpg" alt="Vista del JSON plano con atributos redundantes"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="ba-col-label after">After — Nodos y Relaciones <span style="font-size:0.55rem;color:var(--muted);text-transform:none;letter-spacing:0;margin-left:4px;">( showcase autómata )</span></p>
-                        <div class="ba-fader-showcase">
-                            <div class="ba-thumb"><img src="biblioteca_grafo_semantico1.jpg" alt="Grafo Semántico — Estructura General"></div>
-                            <div class="ba-thumb"><img src="biblioteca_grafo_semantico2.jpg" alt="Grafo Semántico — Relaciones"></div>
-                            <div class="ba-thumb"><img src="biblioteca_grafo_semantico3.jpg" alt="Grafo Semántico — Entidades"></div>
-                        </div>
-                    </div>
-                </div>
+                <p class="ba-intro">
+                    <span class="i18n-es">Un tesauro de tecnología industrial y ciencias aplicadas que había crecido de abajo hacia arriba durante décadas: 1.986 de sus términos eran huérfanos, sin ningún término genérico que los ubicara en la jerarquía. Lo reconstruí por completo y lo conecté a la web de datos. Hoy publica 5.762 conceptos con 5.759 relaciones jerárquicas. 323 commits documentados fase por fase.</span>
+                    <span class="i18n-en">A thesaurus of industrial technology and applied sciences that had grown bottom-up for decades: 1,986 of its terms were orphans, with no broader term placing them in the hierarchy. I rebuilt it entirely and connected it to the web of data. It now publishes 5,762 concepts with 5,759 hierarchical relations. 323 commits, documented phase by phase.</span>
+                </p>
 
                 <div class="case-card">
                     <div class="case-block">
-                        <p class="case-block-label">The Problem</p>
-                        <p>Las bases bibliográficas tradicionales almacenan información redundante — el nombre de un autor repetido cientos de veces — creando silos que impiden motores de descubrimiento moderno, búsquedas por inferencia y arquitecturas GraphRAG para IA.</p>
+                        <p class="case-block-label"><span class="i18n-es">Resultados</span><span class="i18n-en">Results</span></p>
+                        <div class="stat-grid">
+                            <div class="stat-cell"><span class="stat-num">5.762</span><span class="stat-desc"><span class="i18n-es">Conceptos publicados</span><span class="i18n-en">Published concepts</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">4.626</span><span class="stat-desc"><span class="i18n-es">Con equivalencia a Wikidata</span><span class="i18n-en">Matched to Wikidata</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">1.986</span><span class="stat-desc"><span class="i18n-es">Huérfanos jerarquizados</span><span class="i18n-en">Orphans placed in hierarchy</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">513</span><span class="stat-desc"><span class="i18n-es">Sinónimos recuperados</span><span class="i18n-en">Synonyms recovered</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">5.759</span><span class="stat-desc"><span class="i18n-es">Relaciones jerárquicas</span><span class="i18n-en">Hierarchical relations</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">323</span><span class="stat-desc"><span class="i18n-es">Commits documentados</span><span class="i18n-en">Documented commits</span></span></div>
+                        </div>
                     </div>
                     <div class="case-block">
-                        <p class="case-block-label">Engineering &amp; Results</p>
-                        <ul>
-                            <li><strong>Extracción dinámica:</strong> Despiece algorítmico de registros planos en entidades independientes (Documentos, Autores, Temas)</li>
-                            <li><strong>Control de Autoridades al vuelo:</strong> Diccionarios en memoria y normalización de strings para garantizar la unicidad de cada nodo</li>
-                            <li><strong>Modelado Semántico:</strong> Generación de tripletas (Sujeto–Predicado–Objeto) con UUIDs trazables</li>
-                            <li><strong>Impacto:</strong> Despiece de exportaciones masivas en crudo hacia una red semántica de miles de nodos únicos y relaciones, lista para ingesta en bases de datos de grafos</li>
+                        <p class="case-block-label"><span class="i18n-es">Metodología</span><span class="i18n-en">Methodology</span></p>
+                        <p class="i18n-es">Trabajé bajo cinco reglas fijadas antes de tocar un solo término: prioridad endógena (agotar el vocabulario propio antes de importar), sin especificidad espuria (el crecimiento es hacia arriba, no hacia abajo), sin modificación unilateral de relaciones preexistentes, ascenso recursivo (todo nodo importado recibe a su vez su propio genérico) y mapeo semántico obligatorio a Wikidata.</p>
+                        <ul class="i18n-es">
+                            <li>Migración desde <strong>TemaTres</strong> (base SQL + RDF/SKOS) a un modelo JSON versionado en git</li>
+                            <li>Resolución de los 1.986 huérfanos con tres estrategias de anclaje: genérico local, genérico promovido dentro del mismo lote, o importación externa (49 nodos nuevos, todos con QID y con su propio genérico)</li>
+                            <li>Fase multi-fuente LOD: <strong>8 vocabularios externos consultados en paralelo</strong> sobre 1.214 términos, con Wikidata como fuente prioritaria</li>
+                            <li>Fase final sobre los 1.266 términos nunca procesados: 4 estrategias de búsqueda por término (Wikipedia ES, Wikipedia EN, búsqueda de entidades en ambos idiomas con singularización heurística). El 98 % obtuvo al menos un candidato</li>
+                            <li>Recuperación de <strong>513 sinónimos <code>skos:altLabel</code></strong> y 70 notas de alcance que se habían perdido en migraciones anteriores</li>
+                            <li>Restauración sistemática de tildes y revisión de siglas institucionales sobre el vocabulario completo</li>
+                        </ul>
+                        <p class="i18n-en">I worked under five rules fixed before touching a single term: endogenous priority (exhaust the local vocabulary before importing), no spurious specificity (growth goes upward, not downward), no unilateral modification of pre-existing relations, recursive ascent (every imported node gets its own broader term too), and mandatory semantic mapping to Wikidata.</p>
+                        <ul class="i18n-en">
+                            <li>Migration from <strong>TemaTres</strong> (SQL + RDF/SKOS) to a git-versioned JSON model</li>
+                            <li>Resolution of the 1,986 orphans via three anchoring strategies: local broader term, broader term promoted from within the same batch, or external import (49 new nodes, each with a QID and its own broader term)</li>
+                            <li>Multi-source LOD phase: <strong>8 external vocabularies queried in parallel</strong> across 1,214 terms, with Wikidata as the priority source</li>
+                            <li>Final phase over the 1,266 never-processed terms: 4 search strategies per term (Spanish Wikipedia, English Wikipedia, entity search in both languages with heuristic singularisation). 98% returned at least one candidate</li>
+                            <li>Recovery of <strong>513 <code>skos:altLabel</code> synonyms</strong> and 70 scope notes lost in earlier migrations</li>
+                            <li>Systematic restoration of accents and review of institutional acronyms across the whole vocabulary</li>
                         </ul>
                     </div>
                     <div class="hitl">
                         <div class="hitl-header">
                             <span class="hitl-icon">💡</span>
-                            <span class="hitl-label">Decisiones Arquitectónicas — Human-in-the-loop</span>
+                            <span class="hitl-label"><span class="i18n-es">Control de calidad</span><span class="i18n-en">Quality control</span></span>
                         </div>
-                        <ul>
-                            <li><strong>Edge cases de coautoría:</strong> Detecté que el script base trataba "Autor A; Autor B" como un solo nodo. Intervine implementando algoritmos de partición para liberar a cada coautor como entidad independiente</li>
-                            <li><strong>Fallas de capitalización:</strong> Identifiqué que variaciones mínimas ("Información" vs "información") duplicaban nodos. Dirigí la normalización semántica al vuelo para blindar el Control de Autoridades</li>
+                        <ul class="i18n-es">
+                            <li><strong>Regla anti-duplicado automatizada:</strong> ningún término puede recibir un QID ya en uso por otro concepto del tesauro ni por su propio genérico, específico o relacionado. El validador detectó <strong>52 violaciones</strong> en la última fase y las degradó automáticamente antes de escribir el archivo.</li>
+                            <li><strong>Lista de exclusión semántica:</strong> descarte sistemático de municipios, personas, apellidos, películas y páginas de desambiguación, que son la fuente habitual de falsos positivos al mapear vocabularios técnicos contra Wikidata.</li>
+                            <li><strong>Auditoría visual con trazabilidad:</strong> construí una herramienta HTML que lista los mapeos uno por uno con su estado — confirmado, incorrecto o pendiente — para que la revisión humana sea verificable y no una caja negra. <strong>El pipeline de publicación solo emite los QIDs marcados como confirmados</strong>: lo dudoso queda en el archivo de trabajo, no en el dato público.</li>
+                            <li><strong>Los términos sin identificador están caracterizados, no ignorados:</strong> son mayormente organismos nacionales argentinos sin entrada en Wikidata y tecnicismos muy específicos o arcaicos. Saber por qué faltan es parte del resultado.</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li><strong>Automated anti-duplicate rule:</strong> no term may receive a QID already used by another concept in the thesaurus, or by its own broader, narrower or related terms. The validator caught <strong>52 violations</strong> in the final phase and downgraded them automatically before writing the file.</li>
+                            <li><strong>Semantic exclusion list:</strong> systematic rejection of municipalities, people, surnames, films and disambiguation pages — the usual source of false positives when mapping technical vocabularies against Wikidata.</li>
+                            <li><strong>Traceable visual audit:</strong> I built an HTML tool listing every mapping with its status — confirmed, incorrect or pending — so human review is verifiable rather than a black box. <strong>The publishing pipeline only emits QIDs marked as confirmed</strong>: anything doubtful stays in the working file, not in the public data.</li>
+                            <li><strong>The unmapped terms are characterised, not ignored:</strong> mostly Argentine national bodies with no Wikidata entry, plus highly specific or archaic technical terms. Knowing why they are missing is part of the result.</li>
                         </ul>
                     </div>
                     <div class="tag-row">
-                        <span class="tag">Python 3.x</span>
-                        <span class="tag">Knowledge Graphs</span>
-                        <span class="tag">Semantic Search</span>
-                        <span class="tag">GraphRAG</span>
-                        <span class="tag">Data Modeling</span>
-                        <span class="tag">Control de Autoridades</span>
+                        <span class="tag">SKOS</span>
+                        <span class="tag">Wikidata API</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">TemaTres</span>
+                        <span class="tag">Linked Open Data</span>
+                        <span class="tag">Git</span>
+                        <span class="tag"><span class="i18n-es">Control de autoridades</span><span class="i18n-en">Authority Control</span></span>
                     </div>
                 </div>
             </div>
 
+            <!-- ─────────────── 04 ─────────────── -->
             <div class="proj-section">
                 <div class="proj-header">
                     <span class="proj-num">04</span>
                     <div class="proj-meta">
-                        <p class="proj-tag" style="color:var(--pink);">Graph Databases · Web Semántica W3C</p>
-                        <h3 class="proj-title">Motores de Grafo y Razonamiento Semántico</h3>
+                        <p class="proj-tag" style="color:var(--green);"><span class="i18n-es">Calidad de datos · IA con verificación humana</span><span class="i18n-en">Data Quality · Human-verified AI</span></p>
+                        <h3 class="proj-title"><span class="i18n-es">Corrección masiva de catalogación sobre ISIS</span><span class="i18n-en">Mass cataloguing correction over ISIS</span></h3>
                     </div>
                 </div>
 
-                <p class="ba-intro">Bifurcación del catálogo estructurado hacia dos arquitecturas especializadas: rendimiento de búsqueda por afinidad (Property Graphs) versus rigor lógico para inferencias complejas (Web Semántica W3C).</p>
+                <p class="ba-intro">
+                    <span class="i18n-es">Un catálogo de 49.592 registros acumula décadas de criterios de catalogación distintos: el mismo autor escrito de ocho formas, códigos de idioma de dos letras donde la norma pide tres, saltos de línea pegados dentro de un campo, entidades HTML sin decodificar, provenientes de textos copiados de la web. Construí una herramienta de ciclo cerrado <strong>ISIS → Excel → edición asistida por IA → ISIS</strong> y apliqué 18 rondas de corrección sobre la base real.</span>
+                    <span class="i18n-en">A catalogue of 49,592 records accumulates decades of divergent cataloguing criteria: the same author written eight different ways, two-letter language codes where the standard requires three, line breaks embedded inside fields, undecoded HTML entities from text pasted in from the web. I built a closed-loop <strong>ISIS → Excel → AI-assisted editing → ISIS</strong> tool and applied 18 correction rounds to the live database.</span>
+                </p>
 
                 <div class="case-card">
                     <div class="case-block">
-                        <p class="case-block-label">Sprint 2.1 — Materialización y GraphRAG (Property Graphs)</p>
-                        <p><strong style="color:var(--heading);">Tecnologías:</strong> Neo4j · Cypher · APOC</p>
-                        <p style="margin-top:0.5rem;">Ingesta de corpus bibliotecarios de prueba en Neo4j. Backend de alto rendimiento capaz de ejecutar consultas analíticas multi-salto, habilitando motores de recomendación por Content-Based Filtering — calculando distancia semántica mediante descriptores temáticos compartidos en la red.</p>
+                        <p class="case-block-label"><span class="i18n-es">Resultados</span><span class="i18n-en">Results</span></p>
+                        <div class="stat-grid">
+                            <div class="stat-cell"><span class="stat-num">59.605</span><span class="stat-desc"><span class="i18n-es">Correcciones aplicadas</span><span class="i18n-en">Corrections applied</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">47.150</span><span class="stat-desc"><span class="i18n-es">Registros corregidos (95 %)</span><span class="i18n-en">Records corrected (95%)</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">18</span><span class="stat-desc"><span class="i18n-es">Rondas verificadas</span><span class="i18n-en">Verified rounds</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">4.201</span><span class="stat-desc"><span class="i18n-es">Apariciones de autor normalizadas</span><span class="i18n-en">Author mentions normalised</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">1.088</span><span class="stat-desc"><span class="i18n-es">Formas autorizadas aplicadas</span><span class="i18n-en">Authorised forms applied</span></span></div>
+                            <div class="stat-cell"><span class="stat-num">53</span><span class="stat-desc"><span class="i18n-es">Campos ISIS editables</span><span class="i18n-en">Editable ISIS fields</span></span></div>
+                        </div>
                     </div>
                     <div class="case-block">
-                        <p class="case-block-label">Sprint 2.2 — Lógica y Ontologías · Web Semántica W3C <span style="color:var(--amber);font-size:0.6rem;margin-left:0.5rem;">IN DEVELOPMENT</span></p>
-                        <p><strong style="color:var(--heading);">Tecnologías:</strong> RDF · OWL · SPARQL · Protégé</p>
-                        <p style="margin-top:0.5rem;">Construcción de un Grafo de Conocimiento Histórico usando rigor lógico estricto (tripletas Sujeto–Predicado–Objeto) para que el sistema realice inferencias automatizadas sobre procesos históricos complejos — combinando formación en Historia con arquitectura semántica W3C.</p>
+                        <p class="case-block-label"><span class="i18n-es">Qué se corrigió</span><span class="i18n-en">What was corrected</span></p>
+                        <ul class="i18n-es">
+                            <li>Normalización de tipo documental y descriptores temáticos — la ronda más grande, 52.245 cambios</li>
+                            <li><strong>Control de autoridades de autores:</strong> 4.201 apariciones reducidas a 1.088 formas autorizadas, más un barrido posterior de variantes de tilde y abreviatura no listadas en la planilla</li>
+                            <li>Propagación de cada forma autorizada a los campos de afiliación, colaborador y notas — porque corregir solo el campo de autor deja el registro internamente inconsistente</li>
+                            <li>Códigos de idioma normalizados a <strong>ISO 639-2</strong>; nivel de referencia derivado del tipo de documento; subcampos de rol corrompidos</li>
+                            <li>Saltos de línea embebidos, entidades HTML sin decodificar y autores institucionales cargados en el campo de autor personal</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li>Normalisation of document type and subject descriptors — the largest round, 52,245 changes</li>
+                            <li><strong>Author authority control:</strong> 4,201 mentions reduced to 1,088 authorised forms, plus a follow-up sweep for accent and abbreviation variants not listed in the authority file</li>
+                            <li>Propagation of each authorised form into the affiliation, contributor and notes fields — because fixing only the author field leaves the record internally inconsistent</li>
+                            <li>Language codes normalised to <strong>ISO 639-2</strong>; reference level derived from document type; corrupted role subfields</li>
+                            <li>Embedded line breaks, undecoded HTML entities, and institutional authors filed under personal author</li>
+                        </ul>
                     </div>
                     <div class="hitl">
                         <div class="hitl-header">
                             <span class="hitl-icon">💡</span>
-                            <span class="hitl-label">Resoluciones de Arquitectura Backend — Human-in-the-loop</span>
+                            <span class="hitl-label"><span class="i18n-es">Por qué es seguro hacer esto sobre producción</span><span class="i18n-en">Why this is safe to run on production</span></span>
                         </div>
-                        <ul>
-                            <li><strong>Debugging silencioso en ingesta:</strong> Los scripts iniciales fallaban silenciosamente (0 relaciones creadas). Audité la lógica y detecté la discrepancia: el motor buscaba la llave <code>relaciones</code> mientras yo había mapeado la topología bajo <code>enlaces</code>. Refactoricé las consultas Cypher integrando <code>OPTIONAL MATCH</code> y blindaje de tipos, logrando la conexión total del grafo</li>
-                            <li><strong>Bypass de restricciones de entorno:</strong> Ante bloqueos de seguridad locales de APOC en Windows, reorienté la arquitectura para forzar lectura del archivo maestro directamente desde el repositorio raw en GitHub, garantizando despliegue sin fricciones</li>
-                            <li><strong>Algoritmo de recomendación:</strong> Diseñé y probé un algoritmo de Content-Based Filtering que supera holgadamente los límites de los JOINs tradicionales en SQL para este tipo de consulta de afinidad semántica</li>
+                        <ul class="i18n-es">
+                            <li><strong>Se prueba la ida y vuelta antes de editar nada:</strong> exportar y reimportar sin cambios da cero diferencias, verificado sobre la base completa. Si el ciclo no es fiel, ninguna corrección lo es.</li>
+                            <li><strong>Actualización selectiva, nunca recarga total.</strong> La base tiene 1.876 huecos de registros borrados; recargarla entera correría los identificadores internos y rompería las referencias de préstamos. Solo se inyectan los registros modificados.</li>
+                            <li><strong>Clon primero, producción después</strong>, con verificación campo por campo y celda por celda contra la base real, más respaldo automático por cada ronda.</li>
+                            <li><strong>Cuando la base se mueve, se revalida:</strong> al detectar que una ronda ya estaba aplicada, reapliqué los 460 cambios siguientes sobre una exportación fresca verificando cada valor "antes" antes de escribir. Los 460 coincidieron sin excepción.</li>
+                            <li><strong>Lo ambiguo no se toca:</strong> 377 homónimos probables y 50 apellidos indistinguibles quedaron sin modificar y documentados en una planilla de revisión de 16 hojas. Un control de autoridades que fusiona dos personas distintas hace más daño que el que repara.</li>
+                            <li><strong>Los efectos raros del motor se documentan, no se disimulan:</strong> dos campos fuera del diccionario de la base se acumulan en vez de reemplazarse. Probé cuatro estrategias, ninguna lo evita, y dejé escrito que es cosmético y que <em>no</em> hay que limpiarlo en bloque — en algunos registros ese campo tiene datos reales.</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li><strong>The round trip is proven before anything is edited:</strong> exporting and re-importing with no changes yields zero differences, verified over the full database. If the cycle isn't faithful, no correction is.</li>
+                            <li><strong>Selective update, never a full reload.</strong> The database has 1,876 gaps from deleted records; reloading it whole would shift the internal identifiers and break loan references. Only modified records are injected.</li>
+                            <li><strong>Clone first, production second</strong>, with field-by-field and cell-by-cell verification against the live database, plus an automatic backup per round.</li>
+                            <li><strong>When the database moves, revalidate:</strong> on finding that one round had already been applied, I re-applied the following 460 changes against a fresh export, checking every "before" value prior to writing. All 460 matched without exception.</li>
+                            <li><strong>Ambiguity is left alone:</strong> 377 probable homonyms and 50 indistinguishable surnames were left untouched and documented in a 16-sheet review workbook. Authority control that merges two different people does more damage than it repairs.</li>
+                            <li><strong>Odd engine behaviour is documented, not papered over:</strong> two fields outside the database's field definition table accumulate instead of being replaced. I tested four strategies, none avoids it, and recorded that it is cosmetic and must <em>not</em> be cleaned in bulk — in some records that field holds real data.</li>
                         </ul>
                     </div>
                     <div class="tag-row">
-                        <span class="tag">Neo4j</span>
-                        <span class="tag">Cypher</span>
-                        <span class="tag">Graph Database</span>
-                        <span class="tag">GraphRAG</span>
-                        <span class="tag">RDF / OWL</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">CDS/ISIS · ABCD</span>
+                        <span class="tag">ISO 2709</span>
+                        <span class="tag">openpyxl</span>
+                        <span class="tag"><span class="i18n-es">Control de autoridades</span><span class="i18n-en">Authority Control</span></span>
+                        <span class="tag"><span class="i18n-es">Calidad de datos</span><span class="i18n-en">Data Quality</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─────────────── 05 ─────────────── -->
+            <div class="proj-section">
+                <div class="proj-header">
+                    <span class="proj-num">05</span>
+                    <div class="proj-meta">
+                        <p class="proj-tag" style="color:var(--pink);"><span class="i18n-es">Analítica · Visualización de datos</span><span class="i18n-en">Analytics · Data Visualisation</span></p>
+                        <h3 class="proj-title">BiblioData — <span class="i18n-es">7 herramientas de análisis bibliométrico</span><span class="i18n-en">7 bibliometric analysis tools</span></h3>
+                        <a class="proj-url" href="https://biblioteca.inti.gob.ar/herramientas.html" target="_blank" rel="noopener">biblioteca.inti.gob.ar/herramientas.html ↗</a>
+                    </div>
+                </div>
+
+                <p class="ba-intro">
+                    <span class="i18n-es">Una vez que el catálogo es un grafo, deja de ser solo un buscador y pasa a ser un objeto de estudio. Siete herramientas que responden preguntas que el catálogo no muestra a simple vista: qué temas crecen y cuáles se apagan, qué descriptores aparecen siempre juntos, qué organismos concentran la normativa de un sector, cómo se distribuye la producción propia del instituto.</span>
+                    <span class="i18n-en">Once the catalogue is a graph, it stops being just a search box and becomes an object of study. Seven tools that answer questions the catalogue does not show at a glance: which subjects are growing and which are fading, which descriptors always co-occur, which bodies concentrate the standards of a sector, how the institute's own output is distributed.</span>
+                </p>
+
+                <div class="case-card">
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Las siete herramientas</span><span class="i18n-en">The seven tools</span></p>
+                        <ul class="i18n-es">
+                            <li><strong>Perfil de la Colección</strong> — KPIs y distribución por tipología documental e idioma sobre 64.224 documentos indexados y 46.696 autores, con vista separada para la producción propia del instituto (9.711 documentos)</li>
+                            <li><strong>Evolución Temática</strong> — matriz tema × año para detectar temas emergentes y en declive</li>
+                            <li><strong>Co-ocurrencia de Descriptores</strong> — matriz de intersecciones calculada en el navegador para revelar vecindades temáticas</li>
+                            <li><strong>Mapa de Normas</strong> — organismos de normalización, sus temas, su evolución y su distribución nacional/internacional</li>
+                            <li><strong>Perfil de Autor</strong> — producción, coautorías y comparación entre autores</li>
+                            <li><strong>Nube de Temas</strong> — descriptores por frecuencia, con acceso directo a los documentos de cada tema</li>
+                            <li><strong>Buscador de Normas por Objeto</strong> — recuperación de normativa por el objeto o campo de aplicación</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li><strong>Collection Profile</strong> — KPIs and breakdown by document type and language across 64,224 indexed documents and 46,696 authors, with a separate view for the institute's own output (9,711 documents)</li>
+                            <li><strong>Subject Evolution</strong> — subject × year matrix to detect emerging and declining topics</li>
+                            <li><strong>Descriptor Co-occurrence</strong> — intersection matrix computed in the browser to reveal thematic neighbourhoods</li>
+                            <li><strong>Standards Map</strong> — standards bodies, their subjects, their evolution and their national/international split</li>
+                            <li><strong>Author Profile</strong> — output, co-authorship and author-to-author comparison</li>
+                            <li><strong>Subject Cloud</strong> — descriptors by frequency, with direct access to each topic's documents</li>
+                            <li><strong>Standards-by-Object Finder</strong> — retrieval of standards by the object or field they apply to</li>
+                        </ul>
+                        <p class="i18n-es" style="margin-top:1rem;">Cada herramienta lleva un aviso explícito de alcance: BiblioData refleja lo que está catalogado, no la producción total del instituto. Un gráfico sin esa aclaración se lee como si fuera un censo.</p>
+                        <p class="i18n-en" style="margin-top:1rem;">Each tool carries an explicit scope notice: BiblioData reflects what has been catalogued, not the institute's total output. A chart without that caveat reads as if it were a census.</p>
+                    </div>
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Decisión de arquitectura: snapshot vs. consulta en vivo</span><span class="i18n-en">Architectural decision: snapshot vs. live query</span></p>
+                        <p class="i18n-es">Cada herramienta disparaba varias consultas SPARQL de agregación contra el catálogo completo en cada carga: costoso para el servidor y lento para el usuario, para calcular cifras que cambian una vez por semana. Analicé herramienta por herramienta y encontré que el espacio de parámetros del usuario era de 3 a 10 combinaciones fijas, no texto libre — o sea, enumerable.</p>
+                        <p class="i18n-es">La regla que fijé: <strong>los agregados se precalculan, los documentos se consultan en vivo</strong>. Cinco de las siete herramientas leen sus KPIs, rankings y distribuciones de snapshots JSON; en el momento en que el usuario hace clic para ver documentos concretos, la consulta va a SPARQL sin excepción. Las otras dos —Perfil de Autor y Buscador de Normas— son búsquedas puntuales, no agregados, y siguen 100 % en vivo: precalcular miles de perfiles de autor no tendría sentido.</p>
+                        <p class="i18n-es">Los snapshots se generan con Node leyendo el Turtle del catálogo <strong>directamente, sin necesidad de tener el triplestore levantado</strong>, en una corrida que parsea el archivo una sola vez para los cinco. El cambio tocó una función por herramienta — el resto de la lógica de graficado no cambió una línea.</p>
+                        <p class="i18n-en">Every tool fired several aggregation queries against the full catalogue on each load: expensive for the server and slow for the user, to compute figures that change once a week. I analysed each tool and found the user's parameter space was 3 to 10 fixed combinations, not free text — enumerable, in other words.</p>
+                        <p class="i18n-en">The rule I set: <strong>aggregates are precomputed, documents are queried live</strong>. Five of the seven tools read their KPIs, rankings and distributions from JSON snapshots; the moment a user clicks through to actual records, the query goes to SPARQL without exception. The other two — Author Profile and the Standards-by-Object Finder — are point lookups rather than aggregates, and stay fully live: precomputing thousands of author profiles would make no sense.</p>
+                        <p class="i18n-en">The snapshots are generated with Node reading the catalogue's Turtle <strong>directly, with no need for the triplestore to be running</strong>, in a single run that parses the file once for all five. The change touched one function per tool — the rest of the charting logic did not change a single line.</p>
+                    </div>
+                    <div class="tag-row">
                         <span class="tag">SPARQL</span>
-                        <span class="tag">Backend Architecture</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">ECharts</span>
+                        <span class="tag">ApexCharts</span>
+                        <span class="tag"><span class="i18n-es">Bibliometría</span><span class="i18n-en">Bibliometrics</span></span>
+                        <span class="tag"><span class="i18n-es">Calidad de datos</span><span class="i18n-en">Data Quality</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─────────────── 06 ─────────────── -->
+            <div class="proj-section">
+                <div class="proj-header">
+                    <span class="proj-num">06</span>
+                    <div class="proj-meta">
+                        <p class="proj-tag" style="color:var(--accent2);"><span class="i18n-es">Infraestructura · Seguridad · Observabilidad</span><span class="i18n-en">Infrastructure · Security · Observability</span></p>
+                        <h3 class="proj-title"><span class="i18n-es">Migración a Linux, hardening y analítica propia</span><span class="i18n-en">Linux migration, hardening &amp; in-house analytics</span></h3>
+                    </div>
+                </div>
+
+                <p class="ba-intro">
+                    <span class="i18n-es">Construir la plataforma fue la mitad del trabajo; sostenerla en producción dentro de un organismo público fue la otra. Migré el servicio de un entorno Windows/Apache a Linux con nginx, lo endurecí, automaticé su despliegue y le construí su propia capa de observabilidad.</span>
+                    <span class="i18n-en">Building the platform was half the job; running it in production inside a public agency was the other half. I migrated the service from a Windows/Apache environment to Linux with nginx, hardened it, automated its deployment and built its own observability layer.</span>
+                </p>
+
+                <div class="case-card">
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Infraestructura</span><span class="i18n-en">Infrastructure</span></p>
+                        <ul class="i18n-es">
+                            <li>Migración completa del servicio a <strong>Linux + nginx</strong>, con manual de migración propio para que el equipo de sistemas pudiera reproducirla</li>
+                            <li><strong>Apache Jena Fuseki</strong> como backend de consulta, expuesto únicamente por proxy inverso y en modo de solo lectura</li>
+                            <li>Cabeceras de seguridad completas (CSP explícita, <code>X-Frame-Options</code>, <code>nosniff</code>, <code>Referrer-Policy</code>, <code>Permissions-Policy</code>), bloqueo de rutas sensibles y de extensiones que nunca deben servirse</li>
+                            <li><strong>Rate limiting</strong> sobre el endpoint SPARQL para que una consulta pesada o un scraper no puedan tumbar el servicio</li>
+                            <li>Estrategia de caché diferenciada: inmutable por un año para los estáticos versionados, revalidación forzada para CSS y JS</li>
+                            <li>Despliegue automatizado y unidireccional por SSH desde la estación de trabajo, documentado para revisión del área de seguridad informática</li>
+                        </ul>
+                        <ul class="i18n-en">
+                            <li>Full service migration to <strong>Linux + nginx</strong>, with a migration manual so the systems team could reproduce it</li>
+                            <li><strong>Apache Jena Fuseki</strong> as the query backend, exposed read-only behind a reverse proxy</li>
+                            <li>Complete security headers (explicit CSP, <code>X-Frame-Options</code>, <code>nosniff</code>, <code>Referrer-Policy</code>, <code>Permissions-Policy</code>), plus blocking of sensitive paths and never-serve extensions</li>
+                            <li><strong>Rate limiting</strong> on the SPARQL endpoint so a heavy query or a scraper cannot take the service down</li>
+                            <li>Tiered caching: immutable for one year on versioned static assets, forced revalidation for CSS and JS</li>
+                            <li>Automated one-way deployment over SSH from the workstation, documented for information-security review</li>
+                        </ul>
+                    </div>
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Observabilidad sin rastreadores de terceros</span><span class="i18n-en">Observability without third-party trackers</span></p>
+                        <p class="i18n-es">La biblioteca necesitaba reportar uso a su gerencia, pero incorporar un rastreador comercial no era una opción razonable para un sitio público de un organismo del Estado. Construí el pipeline completo: un proceso programado que consolida los logs rotados del servidor, genera el reporte técnico y ejecuta un <strong>informe ejecutivo propio en Python</strong> que produce HTML con gráficos servidos localmente, más un JSON liviano por mes para graficar la tendencia interanual sin reprocesar nada.</p>
+                        <p class="i18n-es">El parser distingue bots de personas, móvil de escritorio, y excluye estáticos y endpoints técnicos para que los rankings de páginas reflejen contenido real y no ruido de infraestructura. Todo dato proveniente del log se escapa antes de insertarse en el HTML; los temporales usan nombres aleatorios con limpieza garantizada aunque el proceso falle a mitad de camino.</p>
+                        <p class="i18n-en">The library needed to report usage to management, but adding a commercial tracker was not a reasonable option for a public agency's public website. I built the whole pipeline: a scheduled process that consolidates the server's rotated logs, generates the technical report and runs an <strong>in-house executive report in Python</strong> producing HTML with locally served charts, plus a lightweight monthly JSON to plot year-over-year trends without reprocessing anything.</p>
+                        <p class="i18n-en">The parser separates bots from people and mobile from desktop, and excludes static assets and technical endpoints so page rankings reflect real content rather than infrastructure noise. Every value coming from the log is escaped before being inserted into HTML; temporary files use randomised names with cleanup guaranteed even if the process fails midway.</p>
+                    </div>
+                    <div class="case-block">
+                        <p class="case-block-label"><span class="i18n-es">Auditoría de seguridad del propio código</span><span class="i18n-en">Security audit of my own code</span></p>
+                        <p class="i18n-es">Audité las siete herramientas de BiblioData y sus puntos de integración. Hallazgos reales y corregidos:</p>
+                        <ul class="i18n-es">
+                            <li><strong>XSS reflejado explotable por enlace compartido:</strong> el término buscado se insertaba sin escapar en el mensaje de "sin resultados", y ese término viaja dentro de la URL que genera el botón Compartir. Bastaba con mandar un enlace para ejecutar código en el navegador de quien lo abriera.</li>
+                            <li><strong>Escapado insuficiente en atributos:</strong> escapar con entidades HTML no alcanza para un valor dentro de un <code>onclick</code>, porque el navegador decodifica el atributo antes de pasárselo al parser de JavaScript. Requirió una función de escape aparte para ese contexto.</li>
+                            <li><strong>Orden de escapado en literales SPARQL:</strong> se escapaba la comilla sin escapar antes la barra invertida, lo que permite cerrar el literal antes de tiempo. Corregido en las doce construcciones afectadas.</li>
+                            <li><strong>Inyección de fórmulas en las exportaciones CSV:</strong> un valor que empieza con <code>=</code> o <code>@</code> se ejecuta como fórmula al abrir el archivo en la planilla del usuario.</li>
+                        </ul>
+                        <p class="i18n-es" style="margin-top:0.9rem;">Dos hallazgos quedaron marcados como <strong>no corregidos deliberadamente</strong>, con el motivo escrito: eliminar <code>'unsafe-inline'</code> de la política de contenido exige reescribir todos los manejadores inline del sitio o generar nonces por petición, imposible en un sitio estático; y endurecer el endpoint de consultas requiere acceso al servidor productivo. Distinguir lo que arreglaste de lo que decidiste no arreglar, y por qué, vale tanto como la corrección.</p>
+                        <p class="i18n-es">A esto se suman auditorías de <strong>SEO y accesibilidad</strong> del sitio completo, y la auditoría de integridad que verifica que el grafo publicado se corresponda con las bases de origen.</p>
+                        <p class="i18n-en">I audited the seven BiblioData tools and their integration points. Real findings, all fixed:</p>
+                        <ul class="i18n-en">
+                            <li><strong>Reflected XSS exploitable via a shared link:</strong> the search term was inserted unescaped into the "no results" message, and that term travels inside the URL produced by the Share button. Sending someone a link was enough to run code in their browser.</li>
+                            <li><strong>Insufficient escaping in attributes:</strong> HTML-entity escaping is not enough for a value inside an <code>onclick</code>, because the browser decodes the attribute before handing it to the JavaScript parser. This needed a separate escape function for that context.</li>
+                            <li><strong>Escaping order in SPARQL literals:</strong> the quote was escaped without first escaping the backslash, which allows closing the literal early. Fixed across the twelve affected constructions.</li>
+                            <li><strong>Formula injection in CSV exports:</strong> a value starting with <code>=</code> or <code>@</code> executes as a formula when the user opens the file in a spreadsheet.</li>
+                        </ul>
+                        <p class="i18n-en" style="margin-top:0.9rem;">Two findings were marked <strong>deliberately not fixed</strong>, with the reasoning written down: removing <code>'unsafe-inline'</code> from the content policy would require rewriting every inline handler on the site or generating per-request nonces, impossible on a static site; and hardening the query endpoint requires production server access. Distinguishing what you fixed from what you chose not to fix, and why, is worth as much as the fix.</p>
+                        <p class="i18n-en">On top of this, <strong>SEO and accessibility</strong> audits of the whole site, plus the integrity audit verifying that the published graph matches the source databases.</p>
+                    </div>
+                    <div class="tag-row">
+                        <span class="tag">Linux</span>
+                        <span class="tag">nginx</span>
+                        <span class="tag">Apache Jena Fuseki</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">SSH / SCP</span>
+                        <span class="tag">Web Security</span>
+                        <span class="tag">SEO</span>
+                        <span class="tag">A11y</span>
                     </div>
                 </div>
             </div>
@@ -732,30 +1060,30 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
     <section id="stack" class="section-pad">
         <div class="container reveal">
             <div class="sec-header">
-                <p class="section-label">02. Core Capabilities</p>
+                <p class="section-label"><span class="i18n-es">02. Capacidades</span><span class="i18n-en">02. Core capabilities</span></p>
                 <h2>Stack &amp; Skills</h2>
             </div>
 
             <div class="caps-grid">
                 <div class="cap-cell">
-                    <p class="cap-phase" style="color:var(--accent);">Library Systems</p>
-                    <p class="cap-title">ISIS / Koha / DSpace / Greenstone</p>
-                    <p class="cap-desc">Implementación y modernización de SIGB (Koha, ABCD, Alma) y repositorios institucionales (Greenstone 3, DSpace). Administración de servidor Apache.</p>
+                    <p class="cap-phase" style="color:var(--amber);"><span class="i18n-es">Web semántica &amp; LOD</span><span class="i18n-en">Semantic Web &amp; LOD</span></p>
+                    <p class="cap-title">RDF · OWL · SKOS · SPARQL</p>
+                    <p class="cap-desc"><span class="i18n-es">Diseño de ontologías y perfiles de aplicación sobre BIBFRAME, Dublin Core, schema.org y PROV-O. Publicación de vocabularios y datasets como Linked Open Data, con mapeo a Wikidata.</span><span class="i18n-en">Ontology and application-profile design on BIBFRAME, Dublin Core, schema.org and PROV-O. Publishing vocabularies and datasets as Linked Open Data, mapped to Wikidata.</span></p>
                 </div>
                 <div class="cap-cell">
-                    <p class="cap-phase" style="color:var(--accent);">Metadata Standards</p>
-                    <p class="cap-title">RDA / MARC21 / FOCAD / AACR2</p>
-                    <p class="cap-desc">Normalización de metadatos bibliográficos. Sistemas de clasificación (CDU) y vocabularios controlados (LEMB, Tesauros). Control de autoridades.</p>
+                    <p class="cap-phase" style="color:var(--green);"><span class="i18n-es">Ingeniería de datos</span><span class="i18n-en">Data Engineering</span></p>
+                    <p class="cap-title">Python · Pandas · rdflib · ETL</p>
+                    <p class="cap-desc"><span class="i18n-es">Pipelines de extracción, saneamiento y transformación de datos legacy a escala. Control de autoridades automatizado, deduplicación de entidades y auditoría de integridad origen ↔ destino.</span><span class="i18n-en">Extraction, cleansing and transformation pipelines for legacy data at scale. Automated authority control, entity deduplication and source ↔ target integrity auditing.</span></p>
                 </div>
                 <div class="cap-cell">
-                    <p class="cap-phase" style="color:var(--amber);">Data &amp; Graphs</p>
-                    <p class="cap-title">Python · Neo4j · RDF · Cypher</p>
-                    <p class="cap-desc">Pipelines ETL con Pandas, modelado de grafos de conocimiento, ingesta en Neo4j, tripletas semánticas y consultas SPARQL. Orquestación con IA.</p>
+                    <p class="cap-phase" style="color:var(--accent);"><span class="i18n-es">Web &amp; infraestructura</span><span class="i18n-en">Web &amp; Infrastructure</span></p>
+                    <p class="cap-title">JavaScript · nginx · Linux</p>
+                    <p class="cap-desc"><span class="i18n-es">Interfaces responsivas y accesibles sin dependencias pesadas. Administración de servidor, hardening, caché, despliegue automatizado y analítica de logs propia.</span><span class="i18n-en">Responsive, accessible interfaces without heavy dependencies. Server administration, hardening, caching, automated deployment and in-house log analytics.</span></p>
                 </div>
                 <div class="cap-cell">
-                    <p class="cap-phase" style="color:var(--green);">Web &amp; Infra</p>
-                    <p class="cap-title">HTML/CSS/JS · Apache · SEO</p>
-                    <p class="cap-desc">Interfaces responsivas, integración con backends legacy, security hardening y SEO técnico en servidor Apache. Vibe coding con Claude y Gemini.</p>
+                    <p class="cap-phase" style="color:var(--pink);"><span class="i18n-es">Sistemas bibliotecarios</span><span class="i18n-en">Library Systems</span></p>
+                    <p class="cap-title">ISIS · Koha · DSpace · Greenstone</p>
+                    <p class="cap-desc"><span class="i18n-es">Modernización de sistemas legacy y repositorios institucionales. Normalización de metadatos (RDA, MARC21, AACR2), clasificación CDU y gestión de vocabularios controlados.</span><span class="i18n-en">Modernisation of legacy systems and institutional repositories. Metadata normalisation (RDA, MARC21, AACR2), UDC classification and controlled-vocabulary management.</span></p>
                 </div>
             </div>
         </div>
@@ -766,51 +1094,73 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
     <section id="experience" class="section-pad">
         <div class="container reveal">
             <div class="sec-header">
-                <p class="section-label">03. Experience</p>
-                <h2>Work Experience</h2>
+                <p class="section-label"><span class="i18n-es">03. Experiencia</span><span class="i18n-en">03. Experience</span></p>
+                <h2><span class="i18n-es">Experiencia profesional</span><span class="i18n-en">Work experience</span></h2>
             </div>
 
             <div class="exp-list">
                 <div class="exp-item">
                     <div>
-                        <span class="exp-period">May 2023 — Present</span>
+                        <span class="exp-period"><span class="i18n-es">May 2023 — Presente</span><span class="i18n-en">May 2023 — Present</span></span>
                         <span class="exp-org">Instituto Nacional de Tecnología Industrial (INTI)</span>
                     </div>
                     <div>
-                        <p class="exp-role">Bibliotecario · Sistemas &amp; Procesos Técnicos</p>
-                        <ul class="exp-bullets">
-                            <li>Diseño y desarrollo del nuevo sitio web de la Biblioteca: frontend, integración backend con bases ISIS y administración del servidor Apache</li>
-                            <li>Desarrollo de scripts para re-etiquetación e integración de datos legacy con la interfaz moderna</li>
-                            <li>Administración del repositorio institucional en Greenstone 3: colecciones, flujos de importación y nueva interfaz</li>
-                            <li>Catalogación con AACR2/FOCAD, clasificación CDU y uso de tesauro especializado en tecnología industrial</li>
+                        <p class="exp-role"><span class="i18n-es">Bibliotecario · Sistemas y procesos técnicos</span><span class="i18n-en">Librarian · Systems &amp; Technical Processing</span></p>
+                        <ul class="exp-bullets i18n-es">
+                            <li>Arquitectura y desarrollo integral de la plataforma web de la Biblioteca: frontend, modelo de datos semántico, backend SPARQL y administración del servidor</li>
+                            <li>Pipeline de migración de las cuatro bases ISIS a un grafo RDF de 145.177 entidades y 2,36 millones de tripletas, con ontología propia y control de autoridades automatizado</li>
+                            <li>Reestructuración y enriquecimiento LOD del tesauro institucional: 5.762 conceptos, 4.626 con equivalencia a Wikidata</li>
+                            <li>Herramienta de corrección masiva de catalogación sobre ISIS: 59.605 correcciones aplicadas y verificadas sobre 47.150 registros</li>
+                            <li>Desarrollo de BiblioData, suite de 7 herramientas de análisis bibliométrico sobre el catálogo</li>
+                            <li>Migración del servicio a Linux/nginx, hardening, automatización del despliegue y pipeline propio de estadísticas de uso</li>
+                            <li>Administración del repositorio institucional en Greenstone 3: colecciones, flujos de importación e interfaz</li>
+                            <li>Catalogación en AACR2/FOCAD, clasificación CDU e indización con tesauro especializado</li>
+                        </ul>
+                        <ul class="exp-bullets i18n-en">
+                            <li>End-to-end architecture and development of the Library's web platform: frontend, semantic data model, SPARQL backend and server administration</li>
+                            <li>Migration pipeline taking four ISIS databases into an RDF graph of 145,177 entities and 2.36 million triples, with a purpose-built ontology and automated authority control</li>
+                            <li>Restructuring and LOD enrichment of the institutional thesaurus: 5,762 concepts, 4,626 matched to Wikidata</li>
+                            <li>Mass cataloguing-correction tool over ISIS: 59,605 corrections applied and verified across 47,150 records</li>
+                            <li>Development of BiblioData, a suite of 7 bibliometric analysis tools over the catalogue</li>
+                            <li>Service migration to Linux/nginx, hardening, deployment automation and an in-house usage analytics pipeline</li>
+                            <li>Administration of the institutional repository on Greenstone 3: collections, import workflows and interface</li>
+                            <li>Cataloguing in AACR2/FOCAD, UDC classification and indexing with a specialised thesaurus</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="exp-item">
                     <div>
-                        <span class="exp-period">Mar 2024 — Present</span>
+                        <span class="exp-period"><span class="i18n-es">Mar 2024 — Presente</span><span class="i18n-en">Mar 2024 — Present</span></span>
                         <span class="exp-org">Instituto María Mazzarello (San Justo)</span>
                     </div>
                     <div>
-                        <p class="exp-role">Bibliotecario Escolar · Cargo Titular</p>
-                        <ul class="exp-bullets">
+                        <p class="exp-role"><span class="i18n-es">Bibliotecario escolar · Cargo titular</span><span class="i18n-en">School Librarian · Tenured post</span></p>
+                        <ul class="exp-bullets i18n-es">
                             <li>Gestión integral de la biblioteca: procesos técnicos, inventariado y servicio de circulación</li>
                             <li>Coordinación de actividades de fomento a la lectura con docentes de nivel primario y secundario</li>
+                        </ul>
+                        <ul class="exp-bullets i18n-en">
+                            <li>Full management of the library: technical processing, inventory and circulation services</li>
+                            <li>Coordination of reading-promotion activities with primary and secondary school teachers</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="exp-item">
                     <div>
-                        <span class="exp-period">Mar — May 2023</span>
+                        <span class="exp-period"><span class="i18n-es">Mar — May 2023</span><span class="i18n-en">Mar — May 2023</span></span>
                         <span class="exp-org">Biblioteca Central San Benito Abad · UCA</span>
                     </div>
                     <div>
-                        <p class="exp-role">Prácticas Profesionales en Bibliotecología</p>
-                        <ul class="exp-bullets">
+                        <p class="exp-role"><span class="i18n-es">Prácticas profesionales en Bibliotecología</span><span class="i18n-en">Professional placement in Library Science</span></p>
+                        <ul class="exp-bullets i18n-es">
                             <li>Procesos técnicos: catalogación en AACR2 y MARC21</li>
                             <li>Circulación: gestión de usuarios, préstamos, reservas y atención al público</li>
+                        </ul>
+                        <ul class="exp-bullets i18n-en">
+                            <li>Technical processing: cataloguing in AACR2 and MARC21</li>
+                            <li>Circulation: user management, loans, reservations and public service</li>
                         </ul>
                     </div>
                 </div>
@@ -818,13 +1168,17 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
                 <div class="exp-item">
                     <div>
                         <span class="exp-period">2017 — 2022</span>
-                        <span class="exp-org">Diversas Instituciones</span>
+                        <span class="exp-org"><span class="i18n-es">Diversas instituciones</span><span class="i18n-en">Various institutions</span></span>
                     </div>
                     <div>
-                        <p class="exp-role">Profesor de Historia · Nivel Secundario y Superior</p>
-                        <ul class="exp-bullets">
+                        <p class="exp-role"><span class="i18n-es">Profesor de Historia · Nivel secundario y superior</span><span class="i18n-en">History Teacher · Secondary &amp; tertiary level</span></p>
+                        <ul class="exp-bullets i18n-es">
                             <li>Dictado de clases, diseño curricular y evaluación continua</li>
-                            <li>Formación de grupos de hasta 35 estudiantes: síntesis, liderazgo y comunicación técnica aplicadas hoy al trabajo con equipos y usuarios</li>
+                            <li>Conducción de grupos de hasta 35 estudiantes: síntesis, comunicación técnica y explicación de temas complejos a audiencias no especializadas</li>
+                        </ul>
+                        <ul class="exp-bullets i18n-en">
+                            <li>Teaching, curriculum design and continuous assessment</li>
+                            <li>Leading groups of up to 35 students: synthesis, technical communication and explaining complex topics to non-specialist audiences</li>
                         </ul>
                     </div>
                 </div>
@@ -837,43 +1191,51 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
     <section id="about" class="section-pad">
         <div class="container reveal">
             <div class="sec-header">
-                <p class="section-label">04. Profile</p>
-                <h2>About Me</h2>
+                <p class="section-label"><span class="i18n-es">04. Perfil</span><span class="i18n-en">04. Profile</span></p>
+                <h2><span class="i18n-es">Sobre mí</span><span class="i18n-en">About me</span></h2>
             </div>
 
             <div class="about-grid">
                 <div class="about-text">
-                    <p>Soy bibliotecario y especialista en sistemas de información con un fuerte perfil tecnológico. Cuento con dos títulos de grado por la <strong>Universidad de Buenos Aires (UBA)</strong> — en Bibliotecología y Ciencia de la Información y en Historia — que me formaron con algo que no abunda en el mercado tech: <strong>rigor metodológico para estructurar, clasificar y recuperar volúmenes masivos de datos complejos</strong>.</p>
-                    <p>En el <strong>INTI</strong>, tomé un sistema web legacy sin documentación, lo analicé desde los cimientos mediante ingeniería inversa y lo reconstruí por completo — reescribí scripts de búsqueda, modifiqué bases de datos y llevé la interfaz a estándares modernos. Este nuevo sistema, que integra un tesauro dinámico en JSON para sugerencias, se encuentra desplegado y en producción.</p>
-                    <p>En paralelo, desarrollo proyectos de arquitectura avanzada para documentar metodologías y potenciar el I+D: desde pipelines ETL con Python hasta la transformación de catálogos en grafos semánticos (Neo4j, RDF, OWL) para habilitar motores de recomendación y búsqueda por inferencia.</p>
-                    <p>Trabajo con IA (Claude, Gemini) como multiplicador de velocidad de entrega — vibe coding — para construir soluciones que combinan el conocimiento profundo de los datos con la capacidad de entregarlos en arquitecturas escalables. Mi ventaja no es escribir código de memoria: es saber qué construir, por qué, y cómo auditarlo.</p>
+                    <div class="i18n-es">
+                        <p>Soy bibliotecario y especialista en sistemas de información con un perfil fuertemente técnico. Tengo dos títulos de grado de la <strong>Universidad de Buenos Aires</strong> — en Bibliotecología y Ciencia de la Información y en Historia — y esa formación me dio algo que no abunda en el mercado tech: <strong>criterio para decidir cómo se estructura, se clasifica y se recupera un volumen grande de información compleja</strong>, antes de escribir la primera línea de código.</p>
+                        <p>En el <strong>INTI</strong> tomé un sistema web legacy sin documentación y lo reconstruí desde los cimientos. Hoy la Biblioteca tiene un catálogo semántico de 145.177 entidades consultable por SPARQL, un tesauro conectado a la web de datos, diccionarios técnicos enriquecidos con LOD y siete herramientas de análisis — todo en producción, servido desde una infraestructura que también diseñé y administro.</p>
+                        <p>Trabajo con IA como multiplicador de velocidad de entrega, pero mi aporte no está en escribir prompts: está en <strong>dirigir la arquitectura, auditar lo que se genera y encontrar los errores que el modelo no ve</strong> — un QID que ya estaba en uso, un constructor que descarta datos en silencio sin fallar, un esquema de URI que parece correcto pero que estructuralmente impide dereferenciar. Cuando corrijo 59.605 campos de un catálogo con ayuda de IA, lo que aporto no es la velocidad: es saber que la base tiene huecos y que por eso nunca hay que recargarla entera, y dejar sin tocar los 377 casos donde dos personas distintas comparten apellido.</p>
+                        <p>Busco un rol donde ese cruce sirva: datos, semántica e infraestructura, con la parte bibliotecológica como ventaja y no como anécdota.</p>
+                    </div>
+                    <div class="i18n-en">
+                        <p>I am a librarian and information systems specialist with a strongly technical profile. I hold two degrees from the <strong>University of Buenos Aires</strong> — in Library &amp; Information Science and in History — and that background gave me something scarce in the tech market: <strong>the judgement to decide how a large body of complex information should be structured, classified and retrieved</strong>, before writing the first line of code.</p>
+                        <p>At <strong>INTI</strong> I took an undocumented legacy web system and rebuilt it from the ground up. The Library now has a semantic catalogue of 145,177 entities queryable over SPARQL, a thesaurus connected to the web of data, technical dictionaries enriched with LOD and seven analytics tools — all in production, served from infrastructure I also designed and administer.</p>
+                        <p>I use AI as a delivery multiplier, but my contribution is not prompting: it is <strong>steering the architecture, auditing what gets generated and finding the errors the model does not see</strong> — a QID already in use elsewhere, a builder silently discarding data without failing, a URI scheme that looks correct but structurally prevents dereferencing. When I correct 59,605 fields of a catalogue with AI assistance, what I contribute is not the speed: it is knowing the database has gaps and must therefore never be reloaded wholesale, and leaving untouched the 377 cases where two different people share a surname.</p>
+                        <p>I am looking for a role where that intersection pays off: data, semantics and infrastructure, with the library-science side as an advantage rather than a footnote.</p>
+                    </div>
                 </div>
 
                 <div>
                     <div class="edu-card">
-                        <p class="edu-label">Education &amp; Background</p>
+                        <p class="edu-label"><span class="i18n-es">Formación</span><span class="i18n-en">Education</span></p>
                         <div class="edu-item">
-                            <span class="edu-name">Lic. en Ciencia de la Información (UBA)</span>
-                            <span class="edu-status">En curso</span>
+                            <span class="edu-name"><span class="i18n-es">Lic. en Ciencia de la Información — UBA</span><span class="i18n-en">BSc (Hons) Information Science — UBA</span></span>
+                            <span class="edu-status"><span class="i18n-es">En curso</span><span class="i18n-en">In progress</span></span>
                         </div>
                         <div class="edu-item">
-                            <span class="edu-name">Prof. en Bibliotecología y Ciencia de la Información (UBA)</span>
-                            <span class="edu-status">Grado</span>
+                            <span class="edu-name"><span class="i18n-es">Prof. en Bibliotecología y Ciencia de la Información — UBA</span><span class="i18n-en">Teaching degree, Library &amp; Information Science — UBA</span></span>
+                            <span class="edu-status"><span class="i18n-es">Grado</span><span class="i18n-en">Degree</span></span>
                         </div>
                         <div class="edu-item">
-                            <span class="edu-name">Prof. en Historia (UBA)</span>
-                            <span class="edu-status">Grado</span>
+                            <span class="edu-name"><span class="i18n-es">Prof. en Historia — UBA</span><span class="i18n-en">Teaching degree, History — UBA</span></span>
+                            <span class="edu-status"><span class="i18n-es">Grado</span><span class="i18n-en">Degree</span></span>
                         </div>
                         <div class="edu-item">
-                            <span class="edu-name">Inglés — Laboratorio de Idiomas UBA</span>
-                            <span class="edu-status">Advanced</span>
+                            <span class="edu-name"><span class="i18n-es">Inglés — Laboratorio de Idiomas, UBA</span><span class="i18n-en">English — Language Lab, UBA</span></span>
+                            <span class="edu-status">B2</span>
                         </div>
                         <div class="edu-item">
-                            <span class="edu-name">SQL, Python, Excel (Udemy)</span>
+                            <span class="edu-name"><span class="i18n-es">Bases de datos SQL y MySQL</span><span class="i18n-en">SQL &amp; MySQL databases</span></span>
                             <span class="edu-status">Cert.</span>
                         </div>
                         <div class="edu-item">
-                            <span class="edu-name">Programación básica (EDTeam)</span>
+                            <span class="edu-name"><span class="i18n-es">Introducción a Python</span><span class="i18n-en">Introduction to Python</span></span>
                             <span class="edu-status">Cert.</span>
                         </div>
                     </div>
@@ -890,11 +1252,36 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
 </footer>
 
 <script>
+    /* ── I18N ── */
+    (function () {
+        const root = document.documentElement;
+        const buttons = document.querySelectorAll('[data-set-lang]');
+
+        function applyLang(lang) {
+            if (lang !== 'es' && lang !== 'en') lang = 'es';
+            root.setAttribute('data-lang', lang);
+            root.setAttribute('lang', lang);
+            buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.setLang === lang)));
+            try { localStorage.setItem('jf-lang', lang); } catch (e) { /* modo privado */ }
+        }
+
+        let initial = null;
+        try { initial = localStorage.getItem('jf-lang'); } catch (e) { /* noop */ }
+        if (!initial) {
+            initial = (navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en';
+        }
+        applyLang(initial);
+
+        buttons.forEach(b => b.addEventListener('click', () => applyLang(b.dataset.setLang)));
+    })();
+
+    /* ── REVEAL ── */
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    /* ── SMOOTH SCROLL ── */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
@@ -903,6 +1290,7 @@ MERGE (d)-[:TRATA_SOBRE]->(t)</pre></div>
         });
     });
 
+    /* ── LIGHTBOX ── */
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
